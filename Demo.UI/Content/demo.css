@@ -1,0 +1,14 @@
+﻿td span {
+    display: none;
+    color: #FFFFFF;
+}
+
+td:hover span {
+    display: block;
+    float: left;
+    position: absolute;
+    background: #edea67;
+    margin-left: 100px;
+    color: #000000;
+    padding: 0 5px;
+}

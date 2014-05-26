@@ -1,0 +1,63 @@
+﻿@model Demo.Core.DTOs.OLevel
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <h3>@ViewBag.Action</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Category)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Category)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Subcategory)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Subcategory)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Subject)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Subject)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.IsOnWebsite)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.IsOnWebsite)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.IsValid)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.IsValid)
+        </div>
+    </div>
+
+    <hr />
+    
+    <div class="col-md-4 col-md-offset-8" style="text-align: center; clear: both; padding: 10px;">
+        @Ajax.ActionLink("Back", "Levels", null, null, new AjaxOptions() { UpdateTargetId = "Main" }, new { @class = "btn btn-default" }) | 
+        <input id="button_save" type="submit" class="btn btn-default" value="Save" />
+    </div>
+}
+

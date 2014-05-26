@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Term]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	[Year] INT NOT NULL,
+    [Name] NVARCHAR(50) NOT NULL, 
+    [DateStart] DATETIME NOT NULL, 
+    [DateEnd] DATETIME NOT NULL, 
+    [DateClose] DATETIME NULL, 
+    [IsHidden] BIT NOT NULL DEFAULT 0, 
+    [IsValid] BIT NOT NULL DEFAULT 1, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
+)

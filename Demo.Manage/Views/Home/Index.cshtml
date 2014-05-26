@@ -1,0 +1,36 @@
+﻿@using Demo.Core.ViewModels
+@model IEnumerable<PanelModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<div style="margin-top: 65px;">
+    <div class="col-md-2">
+        <div class="panel-group" id="accordion">
+            @foreach (var item in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#@item.Id" style="display: block">@item.Item</a>
+                        </h4>
+                    </div>
+                    <div id="@item.Id" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                                @foreach (var subitem in item.SubItems)
+                                {
+                                    <li>@Ajax.ActionLink(subitem.Name, subitem.Action, subitem.Controller, new AjaxOptions { UpdateTargetId = "Main" })</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div id="Main" class="col-md-10">
+        Description in here
+    </div>
+</div>

@@ -1,0 +1,253 @@
+﻿@model Demo.Core.DTOs.OPayment
+
+@section DocumentReady {
+    $('h4.name').empty();
+    $('div.info').empty();
+
+    @if (ViewBag.Type == 1)
+    {
+        @:GetClass(@ViewBag.ActivityId);
+    }
+    else if (ViewBag.Type == 2)
+    {
+        @:GetMember(@ViewBag.ActivityId);
+    }
+}
+
+@section Scripts{
+function GetClass(activityId) 
+    {
+        var url = "Home/GetClass?id=" + activityId;
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            success: function (data) {
+                FillClassInfo(data);
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+
+    function GetMember(activityId) {
+        var url = "/Home/GetMember?id=" + activityId;
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            success: function (data) {
+                FillMemberInfo(data);
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+
+    function FillMemberInfo(data) {
+        $('h4#name').append(data.Name);
+        var html = '<div>Term: ' + GetDate(data.StartDate) + ' - ' + GetDate(data.EndDate) + ', ' + data.Year + '</div>';
+        html += '<div>Price: </div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Price Inc GST';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceIncGST;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Concession Price';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceConcession;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Member Price';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceMember;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        if(data.EarlyBirdPrice != null)
+        {
+            html += '<div>';
+            html += '<div style="float:left;width:20%;margin-left:2%;">';
+            html += 'Early Bird Price';
+            html += '</div>';
+            html += '<div style="float:left;width:10%">';
+            html += data.EarlyBirdPrice;
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="clear:left;"></div>';
+
+            html += '<div>';
+            html += '<div style="float:left;width:20%;margin-left:2%;">';
+            html += 'Early Bird Date';
+            html += '</div>';
+            html += '<div style="float:left;width:10%">';
+            html += GetDate(data.EarlyBirdDateTime);
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="clear:left;"></div>';
+        }
+
+        $('div.info').append(html);
+    }
+
+    function FillClassInfo(data) {
+        $('h4#name').append(data.Name);
+        var html = '<div>Term: ' + GetDate(data.StartDate) + ' - ' + GetDate(data.EndDate) + ', ' + data.Year + '</div>';
+        html += '<div>Level: ' + data.Level + '</div>';
+        html += '<div>Location: ' + data.Location + '</div>';
+        html += '<div>Room: ' + data.Room + '</div>';
+        html += '<div>Teacher: ' + data.Teacher + '</div>';
+        html += '<div>Price: </div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Price Inc GST';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceIncGST;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Concession Price';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceConcession;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        html += '<div>';
+        html += '<div style="float:left;width:20%;margin-left:2%;">';
+        html += 'Member Price';
+        html += '</div>';
+        html += '<div style="float:left;width:10%">';
+        html += data.PriceMember;
+        html += '</div>';
+        html += '</div>';
+        html += '<div style="clear:left;"></div>';
+
+        if(data.EarlyBirdPrice != null)
+        {
+            html += '<div>';
+            html += '<div style="float:left;width:20%;margin-left:2%;">';
+            html += 'Early Bird Price';
+            html += '</div>';
+            html += '<div style="float:left;width:10%">';
+            html += data.EarlyBirdPrice;
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="clear:left;"></div>';
+
+            html += '<div>';
+            html += '<div style="float:left;width:20%;margin-left:2%;">';
+            html += 'Early Bird Date';
+            html += '</div>';
+            html += '<div style="float:left;width:10%">';
+            html += GetDate(data.EarlyBirdDateTime);
+            html += '</div>';
+            html += '</div>';
+            html += '<div style="clear:left;"></div>';
+        }
+
+        $('div.info').append(html);
+    }
+
+    function GetDate(value) {
+        var date = value = new Date(parseInt(value.replace("/Date(", "").replace(")/", ""), 10));
+        return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
+    }
+}
+
+<div style="margin-top: 65px;">
+    <div id="Main" class="col-md-10 col-md-offset-1">
+        <!-- Class/Member info -->
+        <h4 id="name"></h4>
+        <div style="margin-bottom: 20px" class="info">
+        </div>
+
+        <br />
+        <h4>Payment</h4>
+
+         @using (Html.BeginForm("Payment", "Client", new { type = ViewBag.Type, activityId = ViewBag.ActivityId, clientId = ViewBag.ClientId }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+    
+            <hr />
+
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>@Html.LabelFor(m => m.CardType)</strong>
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.CardType, (IEnumerable<SelectListItem>)ViewBag.CardType)
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 0.2em;">
+                <div class="col-md-4">
+                    <strong>@Html.LabelFor(m => m.CardNumber)</strong>
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(m => m.CardNumber)
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 0.2em;">
+                <div class="col-md-4">
+                    <strong>@Html.LabelFor(m => m.ExpiryMonth)</strong>
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(m => m.ExpiryMonth)
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 0.2em;">
+                <div class="col-md-4">
+                    <strong>@Html.LabelFor(m => m.SecurityCode)</strong>
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(m => m.SecurityCode)
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 0.2em;">
+                <div class="col-md-4">
+                    <strong>@Html.LabelFor(m => m.Price)</strong>
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(m => m.Price)
+                </div>
+            </div>
+
+            <hr />
+    
+            <div class="col-md-4 col-md-offset-8" style="text-align: center; clear: both; padding: 10px;">
+                <input id="button_save" type="submit" class="btn btn-default" value="Submit" />
+            </div>
+        }
+    </div>
+</div>
+

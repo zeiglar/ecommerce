@@ -1,0 +1,1461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DemoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DemoDBModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="DemoDBModel.Store.Activity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ActivityType" EntityType="DemoDBModel.Store.ActivityType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="DemoDBModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CategorySubcategory" EntityType="DemoDBModel.Store.CategorySubcategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Class" EntityType="DemoDBModel.Store.Class" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Client" EntityType="DemoDBModel.Store.Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCard" EntityType="DemoDBModel.Store.CreditCard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCardType" EntityType="DemoDBModel.Store.CreditCardType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Level" EntityType="DemoDBModel.Store.Level" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MemberType" EntityType="DemoDBModel.Store.MemberType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="DemoDBModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderActivity" EntityType="DemoDBModel.Store.OrderActivity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderStatus" EntityType="DemoDBModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderStatusType" EntityType="DemoDBModel.Store.OrderStatusType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.Store.PaymentStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PriceType" EntityType="DemoDBModel.Store.PriceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReferenceType" EntityType="DemoDBModel.Store.ReferenceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subcategory" EntityType="DemoDBModel.Store.Subcategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubcategorySubject" EntityType="DemoDBModel.Store.SubcategorySubject" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subject" EntityType="DemoDBModel.Store.Subject" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Term" EntityType="DemoDBModel.Store.Term" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TitleType" EntityType="DemoDBModel.Store.TitleType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CategorySubcategory_ToCategory" Association="DemoDBModel.Store.FK_CategorySubcategory_ToCategory">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategorySubcategory" EntitySet="CategorySubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategorySubcategory_ToSubcategory" Association="DemoDBModel.Store.FK_CategorySubcategory_ToSubcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
+            <End Role="CategorySubcategory" EntitySet="CategorySubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_ToLevel" Association="DemoDBModel.Store.FK_Class_ToLevel">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToMemberType" Association="DemoDBModel.Store.FK_Client_ToMemberType">
+            <End Role="MemberType" EntitySet="MemberType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToReferenceType" Association="DemoDBModel.Store.FK_Client_ToReferenceType">
+            <End Role="ReferenceType" EntitySet="ReferenceType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToTitleType" Association="DemoDBModel.Store.FK_Client_ToTitleType">
+            <End Role="TitleType" EntitySet="TitleType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_ToCreditCardType" Association="DemoDBModel.Store.FK_CreditCard_ToCreditCardType">
+            <End Role="CreditCardType" EntitySet="CreditCardType" />
+            <End Role="CreditCard" EntitySet="CreditCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ToActivity" Association="DemoDBModel.Store.FK_Event_ToActivity">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ToClass" Association="DemoDBModel.Store.FK_Event_ToClass">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ToTerm" Association="DemoDBModel.Store.FK_Event_ToTerm">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToActivity" Association="DemoDBModel.Store.FK_Order_ToActivity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToClient" Association="DemoDBModel.Store.FK_Order_ToClient">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToPriceType" Association="DemoDBModel.Store.FK_Order_ToPriceType">
+            <End Role="PriceType" EntitySet="PriceType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderActivity_ToEvent" Association="DemoDBModel.Store.FK_OrderActivity_ToEvent">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="OrderActivity" EntitySet="OrderActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderActivity_ToOrder" Association="DemoDBModel.Store.FK_OrderActivity_ToOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderActivity" EntitySet="OrderActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToOrder" Association="DemoDBModel.Store.FK_OrderStatus_ToOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToOrderStatusType" Association="DemoDBModel.Store.FK_OrderStatus_ToOrderStatusType">
+            <End Role="OrderStatusType" EntitySet="OrderStatusType" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToPaymentStatus" Association="DemoDBModel.Store.FK_OrderStatus_ToPaymentStatus">
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubcategorySubject_ToSubcategory" Association="DemoDBModel.Store.FK_SubcategorySubject_ToSubcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
+            <End Role="SubcategorySubject" EntitySet="SubcategorySubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubcategorySubject_ToSubject" Association="DemoDBModel.Store.FK_SubcategorySubject_ToSubject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="SubcategorySubject" EntitySet="SubcategorySubject" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Enrolled" Type="int" Nullable="false" />
+          <Property Name="MaxNumber" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceIncGST" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PriceConcession" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceMember" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceDiscount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DateEarlyBird" Type="datetime" />
+          <Property Name="IsDayEvent" Type="bit" Nullable="false" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategorySubcategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="SubcategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="SubcategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="int" Nullable="false" />
+          <Property Name="DayTime" Type="nvarchar" MaxLength="200" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" />
+          <Property Name="Room" Type="nvarchar" MaxLength="200" />
+          <Property Name="Teacher" Type="nvarchar" MaxLength="200" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceTypeId" Type="int" />
+          <Property Name="MemberTypeId" Type="int" Nullable="false" />
+          <Property Name="TitleTypeId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Suburb" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="HomePone" Type="nvarchar" MaxLength="20" />
+          <Property Name="WorkPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreditCardTypeId" Type="int" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" Nullable="false" MaxLength="13" />
+          <Property Name="ExpiryMonth" Type="smallint" Nullable="false" />
+          <Property Name="ExpiryYear" Type="smallint" Nullable="false" />
+          <Property Name="SecurityCode" Type="smallint" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Subcategory" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Level" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ActivityId" Type="int" Nullable="false" />
+          <Property Name="PriceTypeId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PriceIncGST" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="AmountPaid" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Balance" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="2000" />
+          <Property Name="IsSuccess" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderActivity">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ActivityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PaymentStatusId" Type="int" Nullable="false" />
+          <Property Name="OrderStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="IsSuccess" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatusType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReferenceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subcategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubcategorySubject">
+          <Key>
+            <PropertyRef Name="SubcategoryId" />
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubcategoryId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="DateEnd" Type="datetime" Nullable="false" />
+          <Property Name="DateClose" Type="datetime" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TitleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CategorySubcategory_ToCategory">
+          <End Role="Category" Type="DemoDBModel.Store.Category" Multiplicity="1" />
+          <End Role="CategorySubcategory" Type="DemoDBModel.Store.CategorySubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategorySubcategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategorySubcategory_ToSubcategory">
+          <End Role="Subcategory" Type="DemoDBModel.Store.Subcategory" Multiplicity="1" />
+          <End Role="CategorySubcategory" Type="DemoDBModel.Store.CategorySubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategorySubcategory">
+              <PropertyRef Name="SubcategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_ToLevel">
+          <End Role="Level" Type="DemoDBModel.Store.Level" Multiplicity="1" />
+          <End Role="Class" Type="DemoDBModel.Store.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToMemberType">
+          <End Role="MemberType" Type="DemoDBModel.Store.MemberType" Multiplicity="1" />
+          <End Role="Client" Type="DemoDBModel.Store.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="MemberTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToReferenceType">
+          <End Role="ReferenceType" Type="DemoDBModel.Store.ReferenceType" Multiplicity="0..1" />
+          <End Role="Client" Type="DemoDBModel.Store.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReferenceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ReferenceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToTitleType">
+          <End Role="TitleType" Type="DemoDBModel.Store.TitleType" Multiplicity="1" />
+          <End Role="Client" Type="DemoDBModel.Store.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TitleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TitleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_ToCreditCardType">
+          <End Role="CreditCardType" Type="DemoDBModel.Store.CreditCardType" Multiplicity="1" />
+          <End Role="CreditCard" Type="DemoDBModel.Store.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCardTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_ToActivity">
+          <End Role="ActivityType" Type="DemoDBModel.Store.ActivityType" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_ToClass">
+          <End Role="Class" Type="DemoDBModel.Store.Class" Multiplicity="0..1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_ToTerm">
+          <End Role="Term" Type="DemoDBModel.Store.Term" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToActivity">
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToClient">
+          <End Role="Client" Type="DemoDBModel.Store.Client" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToPriceType">
+          <End Role="PriceType" Type="DemoDBModel.Store.PriceType" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PriceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderActivity_ToEvent">
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.Store.OrderActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderActivity_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.Store.OrderActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.Store.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToOrderStatusType">
+          <End Role="OrderStatusType" Type="DemoDBModel.Store.OrderStatusType" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.Store.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToPaymentStatus">
+          <End Role="PaymentStatus" Type="DemoDBModel.Store.PaymentStatus" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.Store.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="PaymentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubcategorySubject_ToSubcategory">
+          <End Role="Subcategory" Type="DemoDBModel.Store.Subcategory" Multiplicity="1" />
+          <End Role="SubcategorySubject" Type="DemoDBModel.Store.SubcategorySubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubcategorySubject">
+              <PropertyRef Name="SubcategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubcategorySubject_ToSubject">
+          <End Role="Subject" Type="DemoDBModel.Store.Subject" Multiplicity="1" />
+          <End Role="SubcategorySubject" Type="DemoDBModel.Store.SubcategorySubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubcategorySubject">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="RetrieveAllSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DemoDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="DemoDBModel.Activity" />
+          <EntitySet Name="ActivityTypes" EntityType="DemoDBModel.ActivityType" />
+          <EntitySet Name="Categories" EntityType="DemoDBModel.Category" />
+          <EntitySet Name="Classes" EntityType="DemoDBModel.Class" />
+          <EntitySet Name="Clients" EntityType="DemoDBModel.Client" />
+          <EntitySet Name="CreditCards" EntityType="DemoDBModel.CreditCard" />
+          <EntitySet Name="CreditCardTypes" EntityType="DemoDBModel.CreditCardType" />
+          <EntitySet Name="Levels" EntityType="DemoDBModel.Level" />
+          <EntitySet Name="MemberTypes" EntityType="DemoDBModel.MemberType" />
+          <EntitySet Name="Orders" EntityType="DemoDBModel.Order" />
+          <EntitySet Name="OrderStatus" EntityType="DemoDBModel.OrderStatu" />
+          <EntitySet Name="OrderStatusTypes" EntityType="DemoDBModel.OrderStatusType" />
+          <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.PaymentStatu" />
+          <EntitySet Name="PriceTypes" EntityType="DemoDBModel.PriceType" />
+          <EntitySet Name="ReferenceTypes" EntityType="DemoDBModel.ReferenceType" />
+          <EntitySet Name="Subcategories" EntityType="DemoDBModel.Subcategory" />
+          <EntitySet Name="Subjects" EntityType="DemoDBModel.Subject" />
+          <EntitySet Name="Terms" EntityType="DemoDBModel.Term" />
+          <EntitySet Name="TitleTypes" EntityType="DemoDBModel.TitleType" />
+          <AssociationSet Name="FK_Event_ToActivity" Association="DemoDBModel.FK_Event_ToActivity">
+            <End Role="ActivityType" EntitySet="ActivityTypes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ToClass" Association="DemoDBModel.FK_Event_ToClass">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_ToTerm" Association="DemoDBModel.FK_Event_ToTerm">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToActivity" Association="DemoDBModel.FK_Order_ToActivity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Class_ToLevel" Association="DemoDBModel.FK_Class_ToLevel">
+            <End Role="Level" EntitySet="Levels" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToMemberType" Association="DemoDBModel.FK_Client_ToMemberType">
+            <End Role="MemberType" EntitySet="MemberTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToReferenceType" Association="DemoDBModel.FK_Client_ToReferenceType">
+            <End Role="ReferenceType" EntitySet="ReferenceTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_ToTitleType" Association="DemoDBModel.FK_Client_ToTitleType">
+            <End Role="TitleType" EntitySet="TitleTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToClient" Association="DemoDBModel.FK_Order_ToClient">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_ToCreditCardType" Association="DemoDBModel.FK_CreditCard_ToCreditCardType">
+            <End Role="CreditCardType" EntitySet="CreditCardTypes" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ToPriceType" Association="DemoDBModel.FK_Order_ToPriceType">
+            <End Role="PriceType" EntitySet="PriceTypes" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToOrder" Association="DemoDBModel.FK_OrderStatus_ToOrder">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToOrderStatusType" Association="DemoDBModel.FK_OrderStatus_ToOrderStatusType">
+            <End Role="OrderStatusType" EntitySet="OrderStatusTypes" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_ToPaymentStatus" Association="DemoDBModel.FK_OrderStatus_ToPaymentStatus">
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="CategorySubcategory" Association="DemoDBModel.CategorySubcategory">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Subcategory" EntitySet="Subcategories" />
+          </AssociationSet>
+          <AssociationSet Name="OrderActivity" Association="DemoDBModel.OrderActivity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="SubcategorySubject" Association="DemoDBModel.SubcategorySubject">
+            <End Role="Subcategory" EntitySet="Subcategories" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <FunctionImport Name="RetrieveAllSubjects" ReturnType="Collection(DemoDBModel.RetrieveAllSubjects_Result)" />
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Enrolled" Type="Int32" Nullable="false" />
+          <Property Name="MaxNumber" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceIncGST" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PriceConcession" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceMember" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceDiscount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DateEarlyBird" Type="DateTime" Precision="3" />
+          <Property Name="IsDayEvent" Type="Boolean" Nullable="false" />
+          <Property Name="IsHidden" Type="Boolean" Nullable="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ActivityType" Relationship="DemoDBModel.FK_Event_ToActivity" FromRole="Activity" ToRole="ActivityType" />
+          <NavigationProperty Name="Class" Relationship="DemoDBModel.FK_Event_ToClass" FromRole="Activity" ToRole="Class" />
+          <NavigationProperty Name="Term" Relationship="DemoDBModel.FK_Event_ToTerm" FromRole="Activity" ToRole="Term" />
+          <NavigationProperty Name="Orders" Relationship="DemoDBModel.FK_Order_ToActivity" FromRole="Activity" ToRole="Order" />
+          <NavigationProperty Name="Orders1" Relationship="DemoDBModel.OrderActivity" FromRole="Activity" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToActivity" FromRole="ActivityType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Subcategories" Relationship="DemoDBModel.CategorySubcategory" FromRole="Category" ToRole="Subcategory" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="Int32" Nullable="false" />
+          <Property Name="DayTime" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Location" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Room" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Teacher" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Duration" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToClass" FromRole="Class" ToRole="Activity" />
+          <NavigationProperty Name="Level" Relationship="DemoDBModel.FK_Class_ToLevel" FromRole="Class" ToRole="Level" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceTypeId" Type="Int32" />
+          <Property Name="MemberTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TitleTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Suburb" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Postcode" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="HomePone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MemberType" Relationship="DemoDBModel.FK_Client_ToMemberType" FromRole="Client" ToRole="MemberType" />
+          <NavigationProperty Name="ReferenceType" Relationship="DemoDBModel.FK_Client_ToReferenceType" FromRole="Client" ToRole="ReferenceType" />
+          <NavigationProperty Name="TitleType" Relationship="DemoDBModel.FK_Client_ToTitleType" FromRole="Client" ToRole="TitleType" />
+          <NavigationProperty Name="Orders" Relationship="DemoDBModel.FK_Order_ToClient" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreditCardTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="13" Unicode="true" FixedLength="false" />
+          <Property Name="ExpiryMonth" Type="Int16" Nullable="false" />
+          <Property Name="ExpiryYear" Type="Int16" Nullable="false" />
+          <Property Name="SecurityCode" Type="Int16" Nullable="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CreditCardType" Relationship="DemoDBModel.FK_CreditCard_ToCreditCardType" FromRole="CreditCard" ToRole="CreditCardType" />
+        </EntityType>
+        <EntityType Name="CreditCardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CreditCards" Relationship="DemoDBModel.FK_CreditCard_ToCreditCardType" FromRole="CreditCardType" ToRole="CreditCard" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Subcategory" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Level1" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="IsHidden" Type="Boolean" Nullable="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Classes" Relationship="DemoDBModel.FK_Class_ToLevel" FromRole="Level" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="MemberType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="DemoDBModel.FK_Client_ToMemberType" FromRole="MemberType" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityId" Type="Int32" Nullable="false" />
+          <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceIncGST" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Memo" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="IsSuccess" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activity" Relationship="DemoDBModel.FK_Order_ToActivity" FromRole="Order" ToRole="Activity" />
+          <NavigationProperty Name="Client" Relationship="DemoDBModel.FK_Order_ToClient" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="PriceType" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="Order" ToRole="PriceType" />
+          <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.OrderActivity" FromRole="Order" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="OrderStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentStatusId" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatusTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsSuccess" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="OrderStatus" ToRole="Order" />
+          <NavigationProperty Name="OrderStatusType" Relationship="DemoDBModel.FK_OrderStatus_ToOrderStatusType" FromRole="OrderStatus" ToRole="OrderStatusType" />
+          <NavigationProperty Name="PaymentStatu" Relationship="DemoDBModel.FK_OrderStatus_ToPaymentStatus" FromRole="OrderStatus" ToRole="PaymentStatus" />
+        </EntityType>
+        <EntityType Name="OrderStatusType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrderStatusType" FromRole="OrderStatusType" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="PaymentStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToPaymentStatus" FromRole="PaymentStatus" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="PriceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="PriceType" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ReferenceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="DemoDBModel.FK_Client_ToReferenceType" FromRole="ReferenceType" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Subcategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Categories" Relationship="DemoDBModel.CategorySubcategory" FromRole="Subcategory" ToRole="Category" />
+          <NavigationProperty Name="Subjects" Relationship="DemoDBModel.SubcategorySubject" FromRole="Subcategory" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Subcategories" Relationship="DemoDBModel.SubcategorySubject" FromRole="Subject" ToRole="Subcategory" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateClose" Type="DateTime" Precision="3" />
+          <Property Name="IsHidden" Type="Boolean" Nullable="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToTerm" FromRole="Term" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="TitleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="DemoDBModel.FK_Client_ToTitleType" FromRole="TitleType" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Event_ToActivity">
+          <End Role="ActivityType" Type="DemoDBModel.ActivityType" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_ToClass">
+          <End Role="Class" Type="DemoDBModel.Class" Multiplicity="0..1" />
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_ToTerm">
+          <End Role="Term" Type="DemoDBModel.Term" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToActivity">
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Class_ToLevel">
+          <End Role="Level" Type="DemoDBModel.Level" Multiplicity="1" />
+          <End Role="Class" Type="DemoDBModel.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToMemberType">
+          <End Role="MemberType" Type="DemoDBModel.MemberType" Multiplicity="1" />
+          <End Role="Client" Type="DemoDBModel.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="MemberTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToReferenceType">
+          <End Role="ReferenceType" Type="DemoDBModel.ReferenceType" Multiplicity="0..1" />
+          <End Role="Client" Type="DemoDBModel.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReferenceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ReferenceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_ToTitleType">
+          <End Role="TitleType" Type="DemoDBModel.TitleType" Multiplicity="1" />
+          <End Role="Client" Type="DemoDBModel.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TitleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TitleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToClient">
+          <End Role="Client" Type="DemoDBModel.Client" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_ToCreditCardType">
+          <End Role="CreditCardType" Type="DemoDBModel.CreditCardType" Multiplicity="1" />
+          <End Role="CreditCard" Type="DemoDBModel.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCardTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ToPriceType">
+          <End Role="PriceType" Type="DemoDBModel.PriceType" Multiplicity="1" />
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PriceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.OrderStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToOrderStatusType">
+          <End Role="OrderStatusType" Type="DemoDBModel.OrderStatusType" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.OrderStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_ToPaymentStatus">
+          <End Role="PaymentStatus" Type="DemoDBModel.PaymentStatu" Multiplicity="1" />
+          <End Role="OrderStatus" Type="DemoDBModel.OrderStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="PaymentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategorySubcategory">
+          <End Role="Category" Type="DemoDBModel.Category" Multiplicity="*" />
+          <End Role="Subcategory" Type="DemoDBModel.Subcategory" Multiplicity="*" />
+        </Association>
+        <Association Name="OrderActivity">
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
+        </Association>
+        <Association Name="SubcategorySubject">
+          <End Role="Subcategory" Type="DemoDBModel.Subcategory" Multiplicity="*" />
+          <End Role="Subject" Type="DemoDBModel.Subject" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="RetrieveAllSubjects_Result">
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Subcategory" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DemoDBModelStoreContainer" CdmEntityContainer="DemoDBEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="DemoDBModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="ActivityTypeId" ColumnName="ActivityTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Enrolled" ColumnName="Enrolled" />
+                <ScalarProperty Name="MaxNumber" ColumnName="MaxNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceIncGST" ColumnName="PriceIncGST" />
+                <ScalarProperty Name="PriceConcession" ColumnName="PriceConcession" />
+                <ScalarProperty Name="PriceMember" ColumnName="PriceMember" />
+                <ScalarProperty Name="PriceDiscount" ColumnName="PriceDiscount" />
+                <ScalarProperty Name="DateEarlyBird" ColumnName="DateEarlyBird" />
+                <ScalarProperty Name="IsDayEvent" ColumnName="IsDayEvent" />
+                <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DemoDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="DemoDBModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="DayTime" ColumnName="DayTime" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="DemoDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReferenceTypeId" ColumnName="ReferenceTypeId" />
+                <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />
+                <ScalarProperty Name="TitleTypeId" ColumnName="TitleTypeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="HomePone" ColumnName="HomePone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="DemoDBModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreditCardTypeId" ColumnName="CreditCardTypeId" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="ExpiryMonth" ColumnName="ExpiryMonth" />
+                <ScalarProperty Name="ExpiryYear" ColumnName="ExpiryYear" />
+                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCardTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.CreditCardType">
+              <MappingFragment StoreEntitySet="CreditCardType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="DemoDBModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Subcategory" ColumnName="Subcategory" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Level1" ColumnName="Level" />
+                <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.MemberType">
+              <MappingFragment StoreEntitySet="MemberType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DemoDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="PriceIncGST" ColumnName="PriceIncGST" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="DemoDBModel.OrderStatu">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+                <ScalarProperty Name="OrderStatusTypeId" ColumnName="OrderStatusTypeId" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.OrderStatusType">
+              <MappingFragment StoreEntitySet="OrderStatusType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatus">
+            <EntityTypeMapping TypeName="DemoDBModel.PaymentStatu">
+              <MappingFragment StoreEntitySet="PaymentStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.PriceType">
+              <MappingFragment StoreEntitySet="PriceType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenceTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.ReferenceType">
+              <MappingFragment StoreEntitySet="ReferenceType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcategories">
+            <EntityTypeMapping TypeName="DemoDBModel.Subcategory">
+              <MappingFragment StoreEntitySet="Subcategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="DemoDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terms">
+            <EntityTypeMapping TypeName="DemoDBModel.Term">
+              <MappingFragment StoreEntitySet="Term">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateClose" ColumnName="DateClose" />
+                <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TitleTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.TitleType">
+              <MappingFragment StoreEntitySet="TitleType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CategorySubcategory" TypeName="DemoDBModel.CategorySubcategory" StoreEntitySet="CategorySubcategory">
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+            <EndProperty Name="Subcategory">
+              <ScalarProperty Name="Id" ColumnName="SubcategoryId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="OrderActivity" TypeName="DemoDBModel.OrderActivity" StoreEntitySet="OrderActivity">
+            <EndProperty Name="Activity">
+              <ScalarProperty Name="Id" ColumnName="ActivityId" />
+            </EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SubcategorySubject" TypeName="DemoDBModel.SubcategorySubject" StoreEntitySet="SubcategorySubject">
+            <EndProperty Name="Subcategory">
+              <ScalarProperty Name="Id" ColumnName="SubcategoryId" />
+            </EndProperty>
+            <EndProperty Name="Subject">
+              <ScalarProperty Name="Id" ColumnName="SubjectId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="RetrieveAllSubjects" FunctionName="DemoDBModel.Store.RetrieveAllSubjects">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DemoDBModel.RetrieveAllSubjects_Result">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Subcategory" ColumnName="Subcategory" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

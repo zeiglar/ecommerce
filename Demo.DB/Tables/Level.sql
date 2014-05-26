@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Level]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
+    [Category] NVARCHAR(50) NOT NULL, 
+    [Subcategory] NVARCHAR(50) NOT NULL, 
+    [Subject] NVARCHAR(50) NOT NULL,
+    [Level] NVARCHAR(150) NOT NULL,
+	
+	[IsHidden] BIT NOT NULL DEFAULT 0,
+    [IsValid] BIT NOT NULL DEFAULT 1, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
+)

@@ -1,0 +1,62 @@
+﻿@model Demo.Core.DTOs.OTerm
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <h3>@ViewBag.Action</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Year)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Year)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Name)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Name)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.StartDate)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.StartDate)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.EndDate)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.EndDate)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.IsOnWebsite)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.IsOnWebsite)
+        </div>
+    </div>
+
+    <hr />
+    <div class="col-md-4 col-md-offset-8" style="text-align: center; clear: both; padding: 10px;">
+        @Ajax.ActionLink("Back", "Terms", null, null, new AjaxOptions() { UpdateTargetId = "Main" }, new { @class = "btn btn-default" }) | 
+        <input id="button_save" type="submit" class="btn btn-default" value="Save" />
+    </div>
+}
+

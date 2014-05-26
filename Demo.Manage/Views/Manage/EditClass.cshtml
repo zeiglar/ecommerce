@@ -1,0 +1,192 @@
+﻿@model Demo.Core.DTOs.OClass
+
+<script type="text/javascript">
+    function GetTerms(year) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlcity").html(procemessage).show();
+        var url = "Manage/GetTermsByYear/";
+
+        $.ajax({
+            url: url,
+            data: { year: year },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value=''>Please Choose</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlTerm").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <h3>@ViewBag.Action</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Year)</strong>
+        </div>
+        <div class="col-md-8">
+            @*@Html.DropDownList("TermYear", String.Empty )*@
+            @Html.DropDownListFor(m => m.Year, (IEnumerable<SelectListItem>)ViewBag.TermYear,
+                new { @onchange = "javascript:GetTerms(this.value);" })
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Term)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Term, (IEnumerable<SelectListItem>)ViewBag.TermName,
+                new { @Id = "ddlTerm" })
+            @* <select id="ddlTerm" name="ddlTerm">
+            </select>*@
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Level)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Level, (IEnumerable<SelectListItem>)ViewBag.Levels,
+                "Please Choose");
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Name)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Name)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.IsValid)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.IsValid)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.IsOnWebiste)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.IsOnWebiste)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.MaxNumber)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.MaxNumber)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.DayTime)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.DayTime)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Location)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Location)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Room)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Room)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Teacher)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Teacher)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.PriceWithGST)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.PriceWithGST)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.ConcessionPrice)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.ConcessionPrice)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.MemberPrice)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.MemberPrice)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.EarlyBirdPrice)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.EarlyBirdPrice)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.EarlyBirdDateTime)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.EarlyBirdDateTime)
+        </div>
+    </div>
+
+    <hr />
+    <div class="col-md-4 col-md-offset-8" style="text-align: center; clear: both; padding: 10px;">
+        @Ajax.ActionLink("Back", "classes", null, null, new AjaxOptions() { UpdateTargetId = "Main" }, new { @class = "btn btn-default" }) | 
+        <input id="button_save" type="submit" class="btn btn-default" value="Save" />
+    </div>
+}

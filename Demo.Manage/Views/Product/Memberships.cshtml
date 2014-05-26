@@ -1,0 +1,134 @@
+﻿@using System.Reflection
+@using Demo.Core.Helpers
+@model PagedList<Demo.Core.DTOs.OMemberInfo>
+
+<div>
+    <div>
+        <a class="btn  btn-default" href="javascript:;" onclick="$('#searchform').toggle('blind');">Search</a>
+        @using (Ajax.BeginForm(null, null, new AjaxOptions { UpdateTargetId = "Main", HttpMethod = "get" }, new { id = "searchform", style = "display:none" }))
+        {    
+            <div class="form-horizontal" style="margin-top: 5px;">
+                @foreach (PropertyInfo title in ViewBag.PropertyInfo)
+                {
+                    if (@title.Name != "Id")
+                    {
+                    <div class="form-group col-md-4">
+                        <label class="col-md-6 control-label">@title.Name</label>
+                        <div class="col-md-6">
+                            @{
+                        Type type = title.GetMethod.ReturnType;
+                        Type nullType = Nullable.GetUnderlyingType(type);
+                        string name;
+                        if (nullType != null)
+                        {
+                            name = nullType.Name;
+                        }
+                        else
+                        {
+                            name = type.Name;
+                        }
+
+                        switch (name)
+                        {
+                            case "Boolean":
+                                <select  name="Search_@title.Name" class="form-control">
+                                    <option value="">All</option>
+                                    <option value="true"  @(Request.QueryString["Search_" + @title.Name] == "true" ? "selected" : "")>True</option>
+                                    <option value="false"  @(Request.QueryString["Search_" + @title.Name] == "false" ? "selected" : "")>False</option>
+                                </select>
+                                break;
+                            case "DateTime":
+                                <input name="Search_@title.Name" class="form-control" type="date" style="width: 135px", @(Request.QueryString["Search_" + @title.Name])>
+                                break;
+                            case "Int32":
+                            case "Int64":
+                            case "Decimal":
+                            default:
+                                @Html.TextBox("Search_" + title.Name, Request["Search_" + title.Name], new { @class = "form-control" })
+                                break;
+                        }
+                            }
+                        </div>
+                    </div>
+                    }
+                }
+                <div class="col-md-2 col-md-offset-10">@* style="float: left; padding-right: 10px; white-space: nowrap;">*@
+                    <input type="submit" class="btn  btn-default" value="StartSearch" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    @if (Request["ordering"] == "Code")
+                    {
+                        @Ajax.ActionLink(string.Format("{0} ↓", "Code"), null, new { ordering = "Code desc" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                    else if (Request["ordering"] == "Code desc")
+                    {
+                        @Ajax.ActionLink("Code ↑", null, new { ordering = "Code" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Code" + "", null, new { ordering = "Code" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                </th>
+                <th>
+                    @if (Request["ordering"] == "Year")
+                    {
+                        @Ajax.ActionLink(string.Format("{0} ↓", "Year"), null, new { ordering = "Year desc" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                    else if (Request["ordering"] == "Year desc")
+                    {
+                        @Ajax.ActionLink("Year ↑", null, new { ordering = "Year" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Year" + "", null, new { ordering = "Year" }, new AjaxOptions { UpdateTargetId = "Main" }) 
+                    }
+                </th>
+                <th>Term
+                </th>
+                <th>detail
+                </th>
+                <td>Enrolled
+                </td>
+                <th>Numbers
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {   
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @item.Term
+                        <br />
+                        @item.StartDate.ToShortDateString() - @item.EndDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("View List", "EnrolledInfo", null, new { type = 2, activityId = @item.Id }, new AjaxOptions { UpdateTargetId = "Main" })
+                    </td>
+                    <td>
+                        @item.Enrolled
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.Raw(Ajax.MikePager((int)Model.GetType().GetProperty("PageIndex").GetValue(Model, null), (int)Model.GetType().GetProperty("PageSize").GetValue(Model, null), (int)Model.GetType().GetProperty("TotalCount").GetValue(Model, null)))

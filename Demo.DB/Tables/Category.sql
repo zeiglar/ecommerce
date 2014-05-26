@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Category]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [Code] INT NULL, 
+    [IsValid] BIT NOT NULL DEFAULT 1, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
+)
