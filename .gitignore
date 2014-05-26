@@ -21,3 +21,4 @@ Demo.DB/obj/Debug/postdeploy.sql
 Demo.Core/bin/
 Demo.Core/obj/
 Demo.Core/DBs/Remotes/
+Demo.UI/Properties/PublishProfiles/FTP.pubxml

@@ -45,7 +45,7 @@ namespace Demo.Manage.Controllers
             panels.Add(new PanelModel()
             {
                 Id = 2,
-                Item = "Activities",
+                Item = "Classes & Lists",
                 SubItems = new List<SubItem>(new SubItem[] { 
                     new SubItem(){Name = "Classes", Action = "Classes", Controller = "Product"}, 
                     new SubItem(){Name = "Events", Action = "Events", Controller = "Product" }, 
