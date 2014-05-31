@@ -44,7 +44,7 @@ namespace Demo.Manage.Controllers
             panels.Add(new PanelModel()
             {
                 Id = 2,
-                Item = "Classes & Lists",
+                Item = "View Classes & Lists",
                 SubItems = new List<SubItem>(new SubItem[] { 
                     new SubItem(){Name = "Classes", Action = "Classes", Controller = "Product"}, 
                     new SubItem(){Name = "Events", Action = "Events", Controller = "Product" }, 
@@ -54,7 +54,7 @@ namespace Demo.Manage.Controllers
             panels.Add(new PanelModel()
             {
                 Id = 3,
-                Item = "Manage Ecommerce",
+                Item = "Setup Classes & Lists",
                 SubItems = new List<SubItem>(new SubItem[] { 
                     new SubItem(){Name = "Classes", Action="Classes", Controller = "Manage"}, 
                     new SubItem(){Name = "Members", Action="Members", Controller = "Manage"}, 
