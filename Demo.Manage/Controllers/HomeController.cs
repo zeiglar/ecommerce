@@ -38,8 +38,7 @@ namespace Demo.Manage.Controllers
                 Id = 1,
                 Item = "Invoices",
                 SubItems = new List<SubItem>(new SubItem[] { 
-                    new SubItem(){Name = "Invoice List", Action = "Invoices", Controller = "Invoice"}, 
-                    new SubItem(){Name = "NewInvoice", Action = "NewInvoices", Controller = "Invoice" }})
+                    new SubItem(){Name = "Invoice List", Action = "Invoices", Controller = "Invoice"}})
             });
 
             panels.Add(new PanelModel()
@@ -66,6 +65,14 @@ namespace Demo.Manage.Controllers
             panels.Add(new PanelModel()
             {
                 Id = 4,
+                Item = "Adminstration",
+                SubItems = new List<SubItem>(new SubItem[] { 
+                    new SubItem(){Name = "Users", Action="Users", Controller = "Administration"}})
+            });
+
+            panels.Add(new PanelModel()
+            {
+                Id = 5,
                 Item = "About",
                 SubItems = new List<SubItem>(new SubItem[] { 
                     new SubItem(){Name = "Who we are", Action = "About", Controller = "Home"}, 
