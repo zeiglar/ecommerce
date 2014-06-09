@@ -28,6 +28,7 @@ namespace Demo.Core.DBs
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Category> Categories { get; set; }

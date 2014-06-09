@@ -138,7 +138,7 @@ namespace Demo.Manage.Controllers
                              Suburb = clients.Suburb,
                              PostCode = clients.Postcode,
                              Mobile = clients.Mobile,
-                             HomePone = clients.HomePone,
+                             HomePone = clients.HomePhone,
                              WorkPhone = clients.WorkPhone,
                              Email = clients.Email
                          };
@@ -184,7 +184,7 @@ namespace Demo.Manage.Controllers
                              Suburb = clients.Suburb,
                              PostCode = clients.Postcode,
                              Mobile = clients.Mobile,
-                             HomePone = clients.HomePone,
+                             HomePone = clients.HomePhone,
                              WorkPhone = clients.WorkPhone,
                              Email = clients.Email,
 

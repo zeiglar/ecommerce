@@ -1,0 +1,108 @@
+﻿@model Demo.Core.DTOs.UIs.OClient
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <h3>@ViewBag.Action</h3>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Title)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Title)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.FirstName)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.FirstName)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.LastName)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.LastName)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Address)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Address)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Suburb)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Suburb)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.PostCode)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.PostCode)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Mobile)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Mobile)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.HomePhone)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.HomePhone)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.WorkPhone)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.WorkPhone)
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Email)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Email)
+        </div>
+    </div>
+
+    <hr />
+    
+    <div class="col-md-4 col-md-offset-8" style="text-align: center; clear: both; padding: 10px;">
+        @Ajax.ActionLink("Back", "ShowInvoice", "Invoice", new { id = @ViewBag.OrderId }, new AjaxOptions() { UpdateTargetId = "Main" }, new { @class = "btn btn-default" }) | 
+        <input id="button_save" type="submit" class="btn btn-default" value="Save" />
+    </div>
+}
+

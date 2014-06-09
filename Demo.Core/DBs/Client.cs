@@ -29,11 +29,12 @@ namespace Demo.Core.DBs
         public string Suburb { get; set; }
         public string Postcode { get; set; }
         public string Mobile { get; set; }
-        public string HomePone { get; set; }
+        public string HomePhone { get; set; }
         public string WorkPhone { get; set; }
         public string Email { get; set; }
         public bool IsValid { get; set; }
         public bool IsDeleted { get; set; }
+        public System.DateTime DateUpdated { get; set; }
         public System.DateTime DateCreated { get; set; }
     
         public virtual MemberType MemberType { get; set; }

@@ -1,6 +1,6 @@
 ﻿@using System.Reflection
 @using Demo.Core.Helpers
-@model PagedList<Demo.Core.DTOs.OInvoice>
+@model PagedList<Demo.Core.DTOs.UIs.OInvoice>
 
 @section Styles {
     <link href="@Url.Content("~/Content/demo.css")" rel="stylesheet" type="text/css" />
@@ -108,6 +108,9 @@
                 </th>
                 <th>Status
                 </th>
+                <th>
+                    Edit
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -153,6 +156,9 @@
                         {
                             <text>Un-finissh</text>
                         }
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("Details", "ShowInvoice", null, new { id = @item.Invoice }, new AjaxOptions { UpdateTargetId = "Main" })
                     </td>
                 </tr>
             }

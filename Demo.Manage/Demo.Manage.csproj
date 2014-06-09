@@ -184,6 +184,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -288,7 +289,9 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -323,6 +326,10 @@
     <Content Include="Views\Product\Memberships.cshtml" />
     <Content Include="Views\Administration\Users.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Invoice\ShowInvoice.cshtml" />
+    <Content Include="Views\Invoice\ShowInvoiceClass.cshtml" />
+    <Content Include="Views\Invoice\ShowInvoiceMember.cshtml" />
+    <Content Include="Views\Client\EditClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -73,6 +73,9 @@
     <Compile Include="DBs\CreditCardType.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBs\C__RefactorLog.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBs\DemoDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,7 +135,8 @@
     <Compile Include="DTOs\OClassBrief.cs" />
     <Compile Include="DTOs\OClassInfo.cs" />
     <Compile Include="DTOs\OEnrolledInfo.cs" />
-    <Compile Include="DTOs\OInvoice.cs" />
+    <Compile Include="DTOs\UIs\OClient.cs" />
+    <Compile Include="DTOs\UIs\OInvoice.cs" />
     <Compile Include="DTOs\OLevel.cs" />
     <Compile Include="DTOs\OMember.cs" />
     <Compile Include="DTOs\OMemberInfo.cs" />
@@ -141,6 +145,8 @@
     <Compile Include="DTOs\OUIClass.cs" />
     <Compile Include="DTOs\OUIClassInfo.cs" />
     <Compile Include="DTOs\OUIClient.cs" />
+    <Compile Include="DTOs\UIs\OInvoiceClass.cs" />
+    <Compile Include="DTOs\UIs\OInvoiceMember.cs" />
     <Compile Include="DTOs\OUIMember.cs" />
     <Compile Include="DTOs\OPayment.cs" />
     <Compile Include="Enums\EActivity.cs" />

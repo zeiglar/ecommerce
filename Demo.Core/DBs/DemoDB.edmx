@@ -6,6 +6,7 @@
     <edmx:StorageModels>
       <Schema Namespace="DemoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DemoDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="DemoDBModel.Store.__RefactorLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Activity" EntityType="DemoDBModel.Store.Activity" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ActivityType" EntityType="DemoDBModel.Store.ActivityType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="DemoDBModel.Store.Category" store:Type="Tables" Schema="dbo" />
@@ -109,6 +110,12 @@
             <End Role="SubcategorySubject" EntitySet="SubcategorySubject" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
@@ -188,11 +195,12 @@
           <Property Name="Suburb" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Postcode" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
-          <Property Name="HomePone" Type="nvarchar" MaxLength="20" />
+          <Property Name="HomePhone" Type="nvarchar" MaxLength="20" />
           <Property Name="WorkPhone" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditCard">
@@ -610,6 +618,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DemoDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DemoDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="DemoDBModel.C__RefactorLog" />
           <EntitySet Name="Activities" EntityType="DemoDBModel.Activity" />
           <EntitySet Name="ActivityTypes" EntityType="DemoDBModel.ActivityType" />
           <EntitySet Name="Categories" EntityType="DemoDBModel.Category" />
@@ -699,6 +708,12 @@
           </AssociationSet>
           <FunctionImport Name="RetrieveAllSubjects" ReturnType="Collection(DemoDBModel.RetrieveAllSubjects_Result)" />
         </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
@@ -779,11 +794,12 @@
           <Property Name="Suburb" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Postcode" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="Mobile" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="HomePone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="WorkPhone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MemberType" Relationship="DemoDBModel.FK_Client_ToMemberType" FromRole="Client" ToRole="MemberType" />
           <NavigationProperty Name="ReferenceType" Relationship="DemoDBModel.FK_Client_ToReferenceType" FromRole="Client" ToRole="ReferenceType" />
@@ -1154,6 +1170,13 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DemoDBModelStoreContainer" CdmEntityContainer="DemoDBEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="DemoDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Activities">
             <EntityTypeMapping TypeName="DemoDBModel.Activity">
               <MappingFragment StoreEntitySet="Activity">
@@ -1228,11 +1251,12 @@
                 <ScalarProperty Name="Suburb" ColumnName="Suburb" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="HomePone" ColumnName="HomePone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
                 <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>

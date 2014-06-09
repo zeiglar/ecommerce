@@ -57,9 +57,10 @@ namespace Demo.UI.Controllers
                 Suburb = ouiclient.Suburb,
                 Postcode = ouiclient.PostCode,
                 Mobile = ouiclient.Mobile,
-                HomePone = ouiclient.HomePhone,
+                HomePhone = ouiclient.HomePhone,
                 WorkPhone = ouiclient.WorkPhone,
                 Email = ouiclient.Email,
+                DateUpdated = this._Now,
                 DateCreated = this._Now
             };
 

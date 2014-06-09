@@ -12,11 +12,12 @@
 	[Suburb] NVARCHAR(50) NOT NULL,
 	[Postcode] NVARCHAR(10) NOT NULL,
 	[Mobile] NVARCHAR(20) NULL,
-	[HomePone] NVARCHAR(20) NULL,
+	[HomePhone] NVARCHAR(20) NULL,
 	[WorkPhone] NVARCHAR(20) NULL,
 	[Email] NVARCHAR(200) NOT NULL,
     [IsValid] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
     [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
 
     CONSTRAINT [FK_Client_ToReferenceType] FOREIGN KEY ([ReferenceTypeId]) REFERENCES [ReferenceType]([Id]),
