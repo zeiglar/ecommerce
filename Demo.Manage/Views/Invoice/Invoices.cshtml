@@ -13,7 +13,7 @@
         {
        
             <div class="form-horizontal" style="margin-top: 5px;">
-                @foreach (PropertyInfo title in ViewBag.PropertyInfo)
+                @*                @foreach (PropertyInfo title in ViewBag.PropertyInfo)
                 {
                     if (@title.Name != "Id")
                     {
@@ -56,7 +56,61 @@
                         </div>
                     </div>
                     }
-                }
+                }*@
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Invoice Number</label>
+                    <div class="col-md-6">
+                        @Html.TextBox("Search_Invoice", Request["Search_Invoice"], new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Date Created</label>
+                    <div class="col-md-6">
+                        <input name="Search_DateCreated" class="form-control" type="date" style="width: 135px", @(Request.QueryString["Search_DateCreated"])>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Is Success</label>
+                    <div class="col-md-6">
+                        <select name="Search_IsSuccess" class="form-control">
+                            <option value="">All</option>
+                            <option value="true"  @(Request.QueryString["Search_IsSuccess"] == "true" ? "selected" : "")>True</option>
+                            <option value="false"  @(Request.QueryString["Search_IsSuccess"] == "false" ? "selected" : "")>False</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">First Name</label>
+                    <div class="col-md-6">
+                        @Html.TextBox("Search_FirstName", Request["Search_FirstName"], new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Last Name</label>
+                    <div class="col-md-6">
+                        @Html.TextBox("Search_LastName", Request["Search_LastName"], new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Price Inc GST</label>
+                    <div class="col-md-6">
+                        @Html.TextBox("Search_PriceIncGST", Request["Search_PriceIncGST"], new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-md-6 control-label">Amount Paid</label>
+                    <div class="col-md-6">
+                        @Html.TextBox("Search_AmountPaid", Request["Search_AmountPaid"], new { @class = "form-control" })
+                    </div>
+                </div>
+
                 <div class="col-md-2 col-md-offset-10">@* style="float: left; padding-right: 10px; white-space: nowrap;">*@
                     <input type="submit" class="btn  btn-default" value="StartSearch" />
                 </div>
@@ -108,8 +162,7 @@
                 </th>
                 <th>Status
                 </th>
-                <th>
-                    Edit
+                <th>Edit
                 </th>
             </tr>
         </thead>

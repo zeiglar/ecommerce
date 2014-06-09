@@ -1,5 +1,6 @@
 ﻿using Demo.Core.Enums;
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Demo.Core.DTOs.UIs
         public bool IsSuccess { get; set; }
 
         //From Client
+        [Browsable(false)]
         public int ClientId { get; set; }
         public ETitle Title { get; set; }
         public string FirstName { get; set; }

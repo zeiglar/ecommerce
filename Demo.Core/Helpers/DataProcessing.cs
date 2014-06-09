@@ -36,12 +36,12 @@ namespace Demo.Core.Helpers
                         break;
                     case "Decimal":
                         var val = queryString[item];
-
+                        var temp = val.Split(',');
                         if (!string.IsNullOrEmpty(val.Split(',')[0]))
                         {
                             model = model.Where(proname + " >= @0 ", decimal.Parse(val.Split(',')[0]));
                         }
-                        if (!string.IsNullOrEmpty(val.Split(',')[1]))
+                        if (temp.Length > 1 && !string.IsNullOrEmpty(val.Split(',')[1]))
                         {
                             model = model.Where(proname + " <= @0 ", decimal.Parse(val.Split(',')[1]));
                         }
