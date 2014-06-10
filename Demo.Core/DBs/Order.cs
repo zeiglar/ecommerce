@@ -16,6 +16,7 @@ namespace Demo.Core.DBs
     {
         public Order()
         {
+            this.OrderHistories = new HashSet<OrderHistory>();
             this.OrderStatus = new HashSet<OrderStatu>();
             this.Activities = new HashSet<Activity>();
         }
@@ -37,6 +38,7 @@ namespace Demo.Core.DBs
         public virtual Activity Activity { get; set; }
         public virtual Client Client { get; set; }
         public virtual PriceType PriceType { get; set; }
+        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
         public virtual ICollection<OrderStatu> OrderStatus { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
     }

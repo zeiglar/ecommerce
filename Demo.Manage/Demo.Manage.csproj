@@ -330,6 +330,7 @@
     <Content Include="Views\Invoice\ShowInvoiceClass.cshtml" />
     <Content Include="Views\Invoice\ShowInvoiceMember.cshtml" />
     <Content Include="Views\Client\EditClient.cshtml" />
+    <Content Include="Views\Invoice\UpdateMemo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

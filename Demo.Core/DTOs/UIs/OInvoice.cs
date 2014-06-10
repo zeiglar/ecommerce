@@ -18,6 +18,7 @@ namespace Demo.Core.DTOs.UIs
         public decimal AmountPaid { get; set; }
         public string Memo { get; set; }
         public bool IsSuccess { get; set; }
+        public List<OrderStep> OrderSteps;
 
         //From Client
         [Browsable(false)]
@@ -32,5 +33,12 @@ namespace Demo.Core.DTOs.UIs
         public string HomePone { get; set; }
         public string WorkPhone { get; set; }
         public string Email { get; set; }
+    }
+
+    public class OrderStep
+    {
+        public int OrderHistoryId { get; set; }
+        public string Record { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

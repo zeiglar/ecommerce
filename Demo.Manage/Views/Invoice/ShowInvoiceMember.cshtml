@@ -3,7 +3,32 @@
 <h3>@ViewBag.Action</h3>
 <hr />
 
-<h4><span><b>** Invoice **</b></span></h4>
+<div class="row">
+    <div class="col-md-4">
+        <h4><span><b>** Invoice **</b></span></h4>
+    </div>
+    <div class="col-md-8">
+        <a class="btn  btn-default" href="javascript:;" onclick="$('#OrderHistory').toggle('blind');">History</a>
+    </div>
+</div>
+
+<div id="OrderHistory" style="display:none">
+    @foreach (var step in Model.OrderSteps)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                @step.OrderHistoryId
+            </div>
+            <div class="col-md-8">
+                @step.Record
+            </div>
+            <div class="col-md-2">
+                @step.DateCreated
+            </div>
+        </div>
+    }
+</div>
+
 <div class="row">
     <div class="col-md-4">
         <strong>@Html.DisplayNameFor(m => m.Invoice)</strong>
@@ -41,8 +66,11 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
         <strong>@Html.DisplayNameFor(m => m.Memo)</strong>
+    </div>
+    <div class="col-md-2">
+        @Ajax.ActionLink("Update", "UpdateMemo", "Invoice", new { orderId = Model.Invoice }, new AjaxOptions { UpdateTargetId = "Main" })
     </div>
     <div class="col-md-8">
         @Html.DisplayFor(m => m.Memo)

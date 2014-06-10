@@ -85,6 +85,7 @@
     <Build Include="Tables\Subject.sql" />
     <Build Include="Tables\Term.sql" />
     <Build Include="RetrieveAllSubjects.sql" />
+    <Build Include="Tables\OrderHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Demo.DB.sqlproj.user" />

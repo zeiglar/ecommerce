@@ -100,6 +100,9 @@
     <Compile Include="DBs\Order.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBs\OrderHistory.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBs\OrderStatu.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
@@ -149,6 +152,7 @@
     <Compile Include="DTOs\UIs\OInvoiceMember.cs" />
     <Compile Include="DTOs\OUIMember.cs" />
     <Compile Include="DTOs\OPayment.cs" />
+    <Compile Include="DTOs\UIs\OMemo.cs" />
     <Compile Include="Enums\EActivity.cs" />
     <Compile Include="Enums\ECard.cs" />
     <Compile Include="Enums\EPrice.cs" />

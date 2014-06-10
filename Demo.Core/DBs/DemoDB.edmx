@@ -19,6 +19,7 @@
           <EntitySet Name="MemberType" EntityType="DemoDBModel.Store.MemberType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="DemoDBModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderActivity" EntityType="DemoDBModel.Store.OrderActivity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderHistory" EntityType="DemoDBModel.Store.OrderHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatus" EntityType="DemoDBModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatusType" EntityType="DemoDBModel.Store.OrderStatusType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.Store.PaymentStatus" store:Type="Tables" Schema="dbo" />
@@ -88,6 +89,10 @@
           <AssociationSet Name="FK_OrderActivity_ToOrder" Association="DemoDBModel.Store.FK_OrderActivity_ToOrder">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderActivity" EntitySet="OrderActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_ToOrder" Association="DemoDBModel.Store.FK_OrderHistory_ToOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderHistory" EntitySet="OrderHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderStatus_ToOrder" Association="DemoDBModel.Store.FK_OrderStatus_ToOrder">
             <End Role="Order" EntitySet="Order" />
@@ -273,6 +278,15 @@
           </Key>
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="ActivityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -551,6 +565,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderHistory_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderHistory" Type="DemoDBModel.Store.OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderStatus_ToOrder">
           <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="1" />
           <End Role="OrderStatus" Type="DemoDBModel.Store.OrderStatus" Multiplicity="*" />
@@ -629,6 +655,7 @@
           <EntitySet Name="Levels" EntityType="DemoDBModel.Level" />
           <EntitySet Name="MemberTypes" EntityType="DemoDBModel.MemberType" />
           <EntitySet Name="Orders" EntityType="DemoDBModel.Order" />
+          <EntitySet Name="OrderHistories" EntityType="DemoDBModel.OrderHistory" />
           <EntitySet Name="OrderStatus" EntityType="DemoDBModel.OrderStatu" />
           <EntitySet Name="OrderStatusTypes" EntityType="DemoDBModel.OrderStatusType" />
           <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.PaymentStatu" />
@@ -681,6 +708,10 @@
           <AssociationSet Name="FK_Order_ToPriceType" Association="DemoDBModel.FK_Order_ToPriceType">
             <End Role="PriceType" EntitySet="PriceTypes" />
             <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_ToOrder" Association="DemoDBModel.FK_OrderHistory_ToOrder">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderHistory" EntitySet="OrderHistories" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderStatus_ToOrder" Association="DemoDBModel.FK_OrderStatus_ToOrder">
             <End Role="Order" EntitySet="Orders" />
@@ -875,8 +906,19 @@
           <NavigationProperty Name="Activity" Relationship="DemoDBModel.FK_Order_ToActivity" FromRole="Order" ToRole="Activity" />
           <NavigationProperty Name="Client" Relationship="DemoDBModel.FK_Order_ToClient" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="PriceType" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="Order" ToRole="PriceType" />
+          <NavigationProperty Name="OrderHistories" Relationship="DemoDBModel.FK_OrderHistory_ToOrder" FromRole="Order" ToRole="OrderHistory" />
           <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="Activities" Relationship="DemoDBModel.OrderActivity" FromRole="Order" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="OrderHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_OrderHistory_ToOrder" FromRole="OrderHistory" ToRole="Order" />
         </EntityType>
         <EntityType Name="OrderStatu">
           <Key>
@@ -1111,6 +1153,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderHistory_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="1" />
+          <End Role="OrderHistory" Type="DemoDBModel.OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderStatus_ToOrder">
           <End Role="Order" Type="DemoDBModel.Order" Multiplicity="1" />
           <End Role="OrderStatus" Type="DemoDBModel.OrderStatu" Multiplicity="*" />
@@ -1325,6 +1379,16 @@
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHistories">
+            <EntityTypeMapping TypeName="DemoDBModel.OrderHistory">
+              <MappingFragment StoreEntitySet="OrderHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
               </MappingFragment>
             </EntityTypeMapping>

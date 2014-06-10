@@ -142,6 +142,18 @@ VALUES
 (2, 1, 2, 15, 15, 0, 'It is a test2 for Mr Ftest to book a member in a concession price', 1),
 (2, 3, 1, 240, 240, 0, 'It is a test2 for Mr Ftest to book a class', 1)
 
+INSERT INTO [OrderHistory]
+([OrderId], [Content])
+VALUES
+(1, 'Client Fill the info form'),
+(1, 'Payment has been made'),
+(2, 'Client Fill the info form'),
+(2, 'Payment has been made'),
+(3, 'Client Fill the info form'),
+(3, 'Payment has been made'),
+(4, 'Client Fill the info form'),
+(4, 'Payment has been made')
+
 INSERT INTO [OrderActivity]
 ([OrderId],[ActivityId])
 VALUES

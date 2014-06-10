@@ -94,6 +94,10 @@ namespace Demo.Manage.Controllers
                                  Email = clients.Email
                              }).FirstOrDefault();
 
+            invoice.OrderSteps = this._DemoDB.OrderHistories
+                                            .Where(s => s.OrderId == invoice.Invoice)
+                                            .Select(s => new OrderStep { OrderHistoryId = s.Id, Record = s.Content, DateCreated = s.DateUpdated })
+                                            .ToList();
 
             TempData["Invoice"] = invoice;
             switch (this._DemoDB.Activities.Where(s => s.Id == invoice.ActivityId).Select(s => s.ActivityTypeId).FirstOrDefault())
@@ -192,6 +196,52 @@ namespace Demo.Manage.Controllers
 
             @ViewBag.Action = "Invoice Detail - Member";
             return PartialView(invoiceMember);
+        }
+
+        public ActionResult UpdateMemo(int orderId)
+        {
+            var invoice = this._DemoDB.Orders.FirstOrDefault(s => s.Id == orderId);
+            if (invoice == null)
+                return HttpNotFound();
+
+            OMemo memo = new OMemo()
+            {
+                Id = invoice.Id,
+                Memo = invoice.Memo
+            };
+
+            @ViewBag.Action = "Invoice Memo Update";
+            @ViewBag.OrderId = invoice.Id;
+            return PartialView(memo);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemo(int? orderId, OMemo oMemo)
+        {
+            if (!orderId.HasValue)
+                return HttpNotFound();
+
+            if (!ModelState.IsValid)
+            {
+                @ViewBag.Action = "Invoice Memo Update";
+                @ViewBag.OrderId = orderId;
+                return PartialView(oMemo);
+            }
+
+            var invoice = this._DemoDB.Orders.FirstOrDefault(s => s.Id == orderId);
+            invoice.Memo = oMemo.Memo;
+
+            try
+            {
+                this._DemoDB.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //TODO: handle ex
+            }
+
+            return RedirectToAction("ShowInvoice", "Invoice", new { id = orderId });
         }
         #endregion
 

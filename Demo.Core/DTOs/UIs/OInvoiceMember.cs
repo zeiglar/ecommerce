@@ -29,6 +29,7 @@ namespace Demo.Core.DTOs.UIs
                 AmountPaid = invoice.AmountPaid;
                 Memo = invoice.Memo;
                 IsSuccess = invoice.IsSuccess;
+                OrderSteps = invoice.OrderSteps;
 
                 //From Client
                 ClientId = invoice.ClientId;
