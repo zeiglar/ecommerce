@@ -39,6 +39,7 @@ namespace Demo.Core.DBs
         public DbSet<Level> Levels { get; set; }
         public DbSet<MemberType> MemberTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderActivity> OrderActivities { get; set; }
         public DbSet<OrderHistory> OrderHistories { get; set; }
         public DbSet<OrderStatu> OrderStatus { get; set; }
         public DbSet<OrderStatusType> OrderStatusTypes { get; set; }

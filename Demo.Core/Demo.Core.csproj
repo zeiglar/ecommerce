@@ -40,11 +40,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,6 +100,9 @@
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DBs\Order.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBs\OrderActivity.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DBs\OrderHistory.cs">
@@ -161,6 +166,7 @@
     <Compile Include="DTOs\UIs\OMemo.cs" />
     <Compile Include="Enums\EActivity.cs" />
     <Compile Include="Enums\ECard.cs" />
+    <Compile Include="Enums\Epayment.cs" />
     <Compile Include="Enums\EPrice.cs" />
     <Compile Include="Enums\ETitle.cs" />
     <Compile Include="Helpers\DataProcessing.cs" />

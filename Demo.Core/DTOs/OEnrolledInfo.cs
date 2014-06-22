@@ -13,7 +13,6 @@ namespace Demo.Core.DTOs
         public int Invoice { get; set; }
         public DateTime DateCreated { get; set; }
         public decimal Price { get; set; }
-        public EPrice PriceType { get; set; }
         public string Memo { get; set; }
 
         //From Client

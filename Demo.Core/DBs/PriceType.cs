@@ -16,13 +16,13 @@ namespace Demo.Core.DBs
     {
         public PriceType()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderActivities = new HashSet<OrderActivity>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public int Code { get; set; }
     
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderActivity> OrderActivities { get; set; }
     }
 }

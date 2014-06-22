@@ -76,16 +76,16 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_ToPriceType" Association="DemoDBModel.Store.FK_Order_ToPriceType">
-            <End Role="PriceType" EntitySet="PriceType" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderActivity_ToActivity" Association="DemoDBModel.Store.FK_OrderActivity_ToActivity">
             <End Role="Activity" EntitySet="Activity" />
             <End Role="OrderActivity" EntitySet="OrderActivity" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderActivity_ToOrder" Association="DemoDBModel.Store.FK_OrderActivity_ToOrder">
             <End Role="Order" EntitySet="Order" />
+            <End Role="OrderActivity" EntitySet="OrderActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderActivity_ToPriceType" Association="DemoDBModel.Store.FK_OrderActivity_ToPriceType">
+            <End Role="PriceType" EntitySet="PriceType" />
             <End Role="OrderActivity" EntitySet="OrderActivity" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderHistory_ToOrder" Association="DemoDBModel.Store.FK_OrderHistory_ToOrder">
@@ -269,7 +269,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="PriceTypeId" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="GST" Type="decimal" Precision="10" Scale="2" />
           <Property Name="PriceIncGST" Type="decimal" Nullable="false" Precision="10" Scale="2" />
@@ -282,11 +281,16 @@
         </EntityType>
         <EntityType Name="OrderActivity">
           <Key>
-            <PropertyRef Name="OrderId" />
-            <PropertyRef Name="ActivityId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="ActivityId" Type="int" Nullable="false" />
+          <Property Name="PriceTypeId" Type="int" Nullable="false" />
+          <Property Name="PriceIncGST" Type="decimal" Nullable="false" />
+          <Property Name="TotalIncGST" Type="decimal" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderHistory">
           <Key>
@@ -550,18 +554,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_ToPriceType">
-          <End Role="PriceType" Type="DemoDBModel.Store.PriceType" Multiplicity="1" />
-          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PriceType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="PriceTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderActivity_ToActivity">
           <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="1" />
           <End Role="OrderActivity" Type="DemoDBModel.Store.OrderActivity" Multiplicity="*" />
@@ -583,6 +575,18 @@
             </Principal>
             <Dependent Role="OrderActivity">
               <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderActivity_ToPriceType">
+          <End Role="PriceType" Type="DemoDBModel.Store.PriceType" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.Store.OrderActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="PriceTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -700,6 +704,7 @@
           <EntitySet Name="Levels" EntityType="DemoDBModel.Level" />
           <EntitySet Name="MemberTypes" EntityType="DemoDBModel.MemberType" />
           <EntitySet Name="Orders" EntityType="DemoDBModel.Order" />
+          <EntitySet Name="OrderActivities" EntityType="DemoDBModel.OrderActivity" />
           <EntitySet Name="OrderHistories" EntityType="DemoDBModel.OrderHistory" />
           <EntitySet Name="OrderStatus" EntityType="DemoDBModel.OrderStatu" />
           <EntitySet Name="OrderStatusTypes" EntityType="DemoDBModel.OrderStatusType" />
@@ -723,6 +728,10 @@
           <AssociationSet Name="FK_Activity_ToTerm" Association="DemoDBModel.FK_Activity_ToTerm">
             <End Role="Term" EntitySet="Terms" />
             <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderActivity_ToActivity" Association="DemoDBModel.FK_OrderActivity_ToActivity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="OrderActivity" EntitySet="OrderActivities" />
           </AssociationSet>
           <AssociationSet Name="FK_Class_ToLevel" Association="DemoDBModel.FK_Class_ToLevel">
             <End Role="Level" EntitySet="Levels" />
@@ -748,9 +757,9 @@
             <End Role="CreditCardType" EntitySet="CreditCardTypes" />
             <End Role="CreditCard" EntitySet="CreditCards" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_ToPriceType" Association="DemoDBModel.FK_Order_ToPriceType">
-            <End Role="PriceType" EntitySet="PriceTypes" />
+          <AssociationSet Name="FK_OrderActivity_ToOrder" Association="DemoDBModel.FK_OrderActivity_ToOrder">
             <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderActivity" EntitySet="OrderActivities" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderHistory_ToOrder" Association="DemoDBModel.FK_OrderHistory_ToOrder">
             <End Role="Order" EntitySet="Orders" />
@@ -763,6 +772,10 @@
           <AssociationSet Name="FK_Payment_ToOrder" Association="DemoDBModel.FK_Payment_ToOrder">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderActivity_ToPriceType" Association="DemoDBModel.FK_OrderActivity_ToPriceType">
+            <End Role="PriceType" EntitySet="PriceTypes" />
+            <End Role="OrderActivity" EntitySet="OrderActivities" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderStatus_ToOrderStatusType" Association="DemoDBModel.FK_OrderStatus_ToOrderStatusType">
             <End Role="OrderStatusType" EntitySet="OrderStatusTypes" />
@@ -779,10 +792,6 @@
           <AssociationSet Name="CategorySubcategory" Association="DemoDBModel.CategorySubcategory">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Subcategory" EntitySet="Subcategories" />
-          </AssociationSet>
-          <AssociationSet Name="OrderActivity" Association="DemoDBModel.OrderActivity">
-            <End Role="Activity" EntitySet="Activities" />
-            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="SubcategorySubject" Association="DemoDBModel.SubcategorySubject">
             <End Role="Subcategory" EntitySet="Subcategories" />
@@ -822,7 +831,7 @@
           <NavigationProperty Name="ActivityType" Relationship="DemoDBModel.FK_Activity_ToActivity" FromRole="Activity" ToRole="ActivityType" />
           <NavigationProperty Name="Class" Relationship="DemoDBModel.FK_Activity_ToClass" FromRole="Activity" ToRole="Class" />
           <NavigationProperty Name="Term" Relationship="DemoDBModel.FK_Activity_ToTerm" FromRole="Activity" ToRole="Term" />
-          <NavigationProperty Name="Orders" Relationship="DemoDBModel.OrderActivity" FromRole="Activity" ToRole="Order" />
+          <NavigationProperty Name="OrderActivities" Relationship="DemoDBModel.FK_OrderActivity_ToActivity" FromRole="Activity" ToRole="OrderActivity" />
         </EntityType>
         <EntityType Name="ActivityType">
           <Key>
@@ -946,7 +955,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="GST" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="PriceIncGST" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
@@ -957,11 +965,26 @@
           <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Client" Relationship="DemoDBModel.FK_Order_ToClient" FromRole="Order" ToRole="Client" />
-          <NavigationProperty Name="PriceType" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="Order" ToRole="PriceType" />
+          <NavigationProperty Name="OrderActivities" Relationship="DemoDBModel.FK_OrderActivity_ToOrder" FromRole="Order" ToRole="OrderActivity" />
           <NavigationProperty Name="OrderHistories" Relationship="DemoDBModel.FK_OrderHistory_ToOrder" FromRole="Order" ToRole="OrderHistory" />
           <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="Payments" Relationship="DemoDBModel.FK_Payment_ToOrder" FromRole="Order" ToRole="Payment" />
-          <NavigationProperty Name="Activities" Relationship="DemoDBModel.OrderActivity" FromRole="Order" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="OrderActivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityId" Type="Int32" Nullable="false" />
+          <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PriceIncGST" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TotalIncGST" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Activity" Relationship="DemoDBModel.FK_OrderActivity_ToActivity" FromRole="OrderActivity" ToRole="Activity" />
+          <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_OrderActivity_ToOrder" FromRole="OrderActivity" ToRole="Order" />
+          <NavigationProperty Name="PriceType" Relationship="DemoDBModel.FK_OrderActivity_ToPriceType" FromRole="OrderActivity" ToRole="PriceType" />
         </EntityType>
         <EntityType Name="OrderHistory">
           <Key>
@@ -1037,7 +1060,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="PriceType" ToRole="Order" />
+          <NavigationProperty Name="OrderActivities" Relationship="DemoDBModel.FK_OrderActivity_ToPriceType" FromRole="PriceType" ToRole="OrderActivity" />
         </EntityType>
         <EntityType Name="ReferenceType">
           <Key>
@@ -1137,6 +1160,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderActivity_ToActivity">
+          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.OrderActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Class_ToLevel">
           <End Role="Level" Type="DemoDBModel.Level" Multiplicity="1" />
           <End Role="Class" Type="DemoDBModel.Class" Multiplicity="*" />
@@ -1209,15 +1244,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_ToPriceType">
-          <End Role="PriceType" Type="DemoDBModel.PriceType" Multiplicity="1" />
-          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
+        <Association Name="FK_OrderActivity_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.OrderActivity" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PriceType">
+            <Principal Role="Order">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="PriceTypeId" />
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1254,6 +1289,18 @@
             </Principal>
             <Dependent Role="Payment">
               <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderActivity_ToPriceType">
+          <End Role="PriceType" Type="DemoDBModel.PriceType" Multiplicity="1" />
+          <End Role="OrderActivity" Type="DemoDBModel.OrderActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderActivity">
+              <PropertyRef Name="PriceTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1296,10 +1343,6 @@
         <Association Name="CategorySubcategory">
           <End Role="Category" Type="DemoDBModel.Category" Multiplicity="*" />
           <End Role="Subcategory" Type="DemoDBModel.Subcategory" Multiplicity="*" />
-        </Association>
-        <Association Name="OrderActivity">
-          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
-          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
         </Association>
         <Association Name="SubcategorySubject">
           <End Role="Subcategory" Type="DemoDBModel.Subcategory" Multiplicity="*" />
@@ -1465,7 +1508,6 @@
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="GST" ColumnName="GST" />
                 <ScalarProperty Name="PriceIncGST" ColumnName="PriceIncGST" />
@@ -1473,6 +1515,20 @@
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderActivities">
+            <EntityTypeMapping TypeName="DemoDBModel.OrderActivity">
+              <MappingFragment StoreEntitySet="OrderActivity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
+                <ScalarProperty Name="PriceIncGST" ColumnName="PriceIncGST" />
+                <ScalarProperty Name="TotalIncGST" ColumnName="TotalIncGST" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
@@ -1618,14 +1674,6 @@
             </EndProperty>
             <EndProperty Name="Subcategory">
               <ScalarProperty Name="Id" ColumnName="SubcategoryId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="OrderActivity" TypeName="DemoDBModel.OrderActivity" StoreEntitySet="OrderActivity">
-            <EndProperty Name="Activity">
-              <ScalarProperty Name="Id" ColumnName="ActivityId" />
-            </EndProperty>
-            <EndProperty Name="Order">
-              <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="SubcategorySubject" TypeName="DemoDBModel.SubcategorySubject" StoreEntitySet="SubcategorySubject">

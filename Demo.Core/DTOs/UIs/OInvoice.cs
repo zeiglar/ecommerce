@@ -18,6 +18,8 @@ namespace Demo.Core.DTOs.UIs
         public string Memo { get; set; }
         public bool IsSuccess { get; set; }
         public List<OrderStep> OrderSteps;
+        public List<Invoice> Invoices;
+        public List<Shopping> Shoppings;
 
         //From Client
         [Browsable(false)]
@@ -39,5 +41,22 @@ namespace Demo.Core.DTOs.UIs
         public int OrderHistoryId { get; set; }
         public string Record { get; set; }
         public DateTime DateCreated { get; set; }
+    }
+
+    public class Shopping
+    {
+        public int ActivityId { get; set; }
+        public string Name { get; set; }
+        public EPrice PriceType { get; set; }
+        public decimal PriceIncGST { get; set; }
+        public decimal TotalIncGST { get; set; }
+    }
+
+    public class Invoice
+    {
+        public int PaymentId { get; set; }
+        public Epayment PaymentType { get; set; }
+        public string AuthoredBy { get; set; }
+        public decimal Paid { get; set; }
     }
 }

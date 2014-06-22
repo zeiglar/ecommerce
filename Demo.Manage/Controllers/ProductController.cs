@@ -116,18 +116,20 @@ namespace Demo.Manage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var ordersSuccess = this._DemoDB.Orders.Where(s => s.Activities.Any(t => t.Id == activityId) && s.IsSuccess);
-
-            var models = from orders in ordersSuccess
+            var models = from activities in this._DemoDB.Activities
+                         join ordacts in this._DemoDB.OrderActivities
+                         on activities.Id equals ordacts.ActivityId
+                         join orders in this._DemoDB.Orders
+                         on ordacts.OrderId equals orders.Id
                          join clients in this._DemoDB.Clients
                          on orders.ClientId equals clients.Id
-                         orderby orders.DateCreated descending
+                         orderby activities.DateCreated descending
+                         where activities.Id == activityId.Value && orders.IsSuccess
                          select new OEnrolledInfo
                          {
                              Invoice = orders.Id,
                              DateCreated = orders.DateCreated,
                              Price = orders.PriceIncGST,
-                             PriceType = (EPrice)orders.PriceType.Code,
                              Memo = orders.Memo,
 
                              Title = (ETitle)clients.TitleType.Code,
@@ -167,12 +169,15 @@ namespace Demo.Manage.Controllers
 
         public void Download(int activityId, string name)
         {
-            var ordersSuccess = this._DemoDB.Orders.Where(s => s.Activities.Any(t => t.Id == activityId) && s.IsSuccess);
-
-            var models = from orders in ordersSuccess
+            var models = from activities in this._DemoDB.Activities
+                         join ordacts in this._DemoDB.OrderActivities
+                         on activities.Id equals ordacts.ActivityId
+                         join orders in this._DemoDB.Orders
+                         on ordacts.OrderId equals orders.Id
                          join clients in this._DemoDB.Clients
                          on orders.ClientId equals clients.Id
-                         orderby orders.DateCreated descending
+                         orderby activities.DateCreated descending
+                         where activities.Id == activityId && orders.IsSuccess
                          select new OEnrolledInfo
                          {
                              Title = (ETitle)clients.TitleType.Code,
@@ -189,7 +194,6 @@ namespace Demo.Manage.Controllers
                              Invoice = orders.Id,
                              DateCreated = orders.DateCreated,
                              Price = orders.PriceIncGST,
-                             PriceType = (EPrice)orders.PriceType.Code,
                              Memo = orders.Memo
                          };
 
@@ -200,10 +204,10 @@ namespace Demo.Manage.Controllers
 
             //content
             StringWriter sw = new StringWriter();
-            sw.WriteLine("Title,FirstName,LastName,Address,Suburb,PostCode,Mobile,HomePone,WorkPhone,Email,Invoice,DateCreated,Price,PriceType,Memo");
+            sw.WriteLine("Title,FirstName,LastName,Address,Suburb,PostCode,Mobile,HomePone,WorkPhone,Email,Invoice,DateCreated,Price,Memo");
             foreach (var client in models.AsEnumerable())
             {
-                sw.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}",
+                sw.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13}",
                     client.Title,
                     client.FirstName,
                     client.LastName,
@@ -217,7 +221,6 @@ namespace Demo.Manage.Controllers
                     client.Invoice,
                     client.DateCreated,
                     client.Price,
-                    client.PriceType,
                     client.Memo
                     ));
             }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @*<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />*@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("Styles", required: false)
 </head>
@@ -39,6 +41,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+
     <script>
         $(document).ajaxStart(function () {
             $("#page-loading").show();
@@ -54,6 +58,9 @@
                 $("#errormsg .modal-body").html(request.responseText);
             }
             $("#errormsg").modal("toggle");
+        });
+        $(document).ready(function () {
+            $("#tabs").tabs();
         });
     </script>
     @RenderSection("scripts", required: false)

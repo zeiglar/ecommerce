@@ -16,7 +16,7 @@ namespace Demo.Core.DBs
     {
         public Activity()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderActivities = new HashSet<OrderActivity>();
         }
     
         public int Id { get; set; }
@@ -42,6 +42,6 @@ namespace Demo.Core.DBs
         public virtual ActivityType ActivityType { get; set; }
         public virtual Class Class { get; set; }
         public virtual Term Term { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderActivity> OrderActivities { get; set; }
     }
 }
