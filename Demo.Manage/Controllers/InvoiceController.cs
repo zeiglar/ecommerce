@@ -73,7 +73,6 @@ namespace Demo.Manage.Controllers
                              {
                                  //order
                                  Invoice = orders.Id,
-                                 ActivityId = orders.ActivityId,
                                  DateCreated = orders.DateCreated,
                                  PriceIncGST = orders.PriceIncGST,
                                  AmountPaid = orders.AmountPaid,

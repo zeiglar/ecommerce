@@ -116,13 +116,12 @@ namespace Demo.Manage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var models = from activities in this._DemoDB.Activities
-                         join orders in this._DemoDB.Orders
-                         on activities.Id equals orders.ActivityId
+            var ordersSuccess = this._DemoDB.Orders.Where(s => s.Activities.Any(t => t.Id == activityId) && s.IsSuccess);
+
+            var models = from orders in ordersSuccess
                          join clients in this._DemoDB.Clients
                          on orders.ClientId equals clients.Id
-                         where activities.Id == activityId.Value && orders.IsSuccess
-                         orderby activities.DateCreated descending
+                         orderby orders.DateCreated descending
                          select new OEnrolledInfo
                          {
                              Invoice = orders.Id,
@@ -168,13 +167,12 @@ namespace Demo.Manage.Controllers
 
         public void Download(int activityId, string name)
         {
-            var models = from activities in this._DemoDB.Activities
-                         join orders in this._DemoDB.Orders
-                         on activities.Id equals orders.ActivityId
+            var ordersSuccess = this._DemoDB.Orders.Where(s => s.Activities.Any(t => t.Id == activityId) && s.IsSuccess);
+
+            var models = from orders in ordersSuccess
                          join clients in this._DemoDB.Clients
                          on orders.ClientId equals clients.Id
-                         where activities.Id == activityId && orders.IsSuccess
-                         orderby activities.DateCreated descending
+                         orderby orders.DateCreated descending
                          select new OEnrolledInfo
                          {
                              Title = (ETitle)clients.TitleType.Code,

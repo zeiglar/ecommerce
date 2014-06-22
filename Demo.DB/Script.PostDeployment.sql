@@ -144,13 +144,13 @@ VALUES
 (2, 'FCom', 'LCom', 'Test3 Adddress', 'Test3S', '2000', '1234567890', 'test3@test3.com')
 
 INSERT INTO [Order]
-([ClientId], [PriceTypeId], [PriceIncGST], [AmountPaid],[Balance], [Memo], [IsSuccess])
+([ClientId], [PriceIncGST], [AmountPaid],[Balance], [Memo], [IsSuccess])
 VALUES
-(1, 1, 20, 20, 0, 'It is a test for Mr Ftest to book a member', 1),
-(1, 1, 240, 20, -220, 'It is a test for Mr Ftest to book a class', 1),
-(2, 2, 15, 15, 0, 'It is a test2 for Mr Ftest to book a member in a concession price', 1),
-(2, 1, 240, 260, 20, 'It is a test2 for Mr Ftest to book a class', 1),
-(3, 1, 260, 260, 0, 'It is a test for Mr Ftest to book a member', 1)
+(1, 20, 20, 0, 'It is a test for Mr Ftest to book a member', 1),
+(1, 240, 20, -220, 'It is a test for Mr Ftest to book a class', 1),
+(2, 15, 15, 0, 'It is a test2 for Mr Ftest to book a member in a concession price', 1),
+(2, 240, 260, 20, 'It is a test2 for Mr Ftest to book a class', 1),
+(3, 260, 260, 0, 'It is a test for Mr Ftest to book a member', 1)
 
 INSERT INTO [Payment]
 ([PaymentTypeId], [OrderId], [Paid], [AuthoredBy], [DateCreated])
@@ -163,13 +163,14 @@ VALUES
 (1, 5, 60, 'test', '2014-05-05 23:41:15.800')
 
 INSERT INTO [OrderActivity]
+([Id], [OrderId], [ActivityId], [PriceTypeId], [PriceIncGST], [TotalIncGST])
 VALUES
-(1, 1),
-(2, 2),
-(3, 1),
-(4, 3),
-(5, 1),
-(5, 2)
+(NEWID(), 1, 1, 1, 20, 20),
+(NEWID(), 2, 2, 1, 240, 240),
+(NEWID(), 3, 1, 2, 15, 15),
+(NEWID(), 4, 3, 1, 240, 240),
+(NEWID(), 5, 1, 1, 20, 20),
+(NEWID(), 5, 2, 1, 240, 240)
 
 
 INSERT INTO [OrderHistory]

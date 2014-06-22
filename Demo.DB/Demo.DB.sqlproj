@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Bridges\CategorySubcategory.sql" />
-    <Build Include="Tables\Bridges\OrderActivity.sql" />
     <Build Include="Tables\Bridges\SubcategorySubject.sql" />
     <Build Include="Tables\Types\ActivityType.sql" />
     <Build Include="Tables\Types\CreditCardType.sql" />
@@ -88,6 +87,7 @@
     <Build Include="Tables\OrderHistory.sql" />
     <Build Include="Tables\Types\PaymentType.sql" />
     <Build Include="Tables\Payment.sql" />
+    <Build Include="Tables\OrderActivity.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Demo.DB.sqlproj.user" />

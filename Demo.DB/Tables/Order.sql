@@ -5,7 +5,6 @@
 
 	-- F Key --
 	[ClientId] INT NOT NULL,
-	[PriceTypeId] INT NOT NULL,
 	
 	-- Value --
 	[Price] DECIMAL(10,2) NULL DEFAULT 0.0,
@@ -19,6 +18,5 @@
     [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
     [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 
-    CONSTRAINT [FK_Order_ToClient] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id]),
-    CONSTRAINT [FK_Order_ToPriceType] FOREIGN KEY ([PriceTypeId]) REFERENCES [PriceType]([Id])
+    CONSTRAINT [FK_Order_ToClient] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id])
 )
