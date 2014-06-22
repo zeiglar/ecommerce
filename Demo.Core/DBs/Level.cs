@@ -27,6 +27,7 @@ namespace Demo.Core.DBs
         public bool IsHidden { get; set; }
         public bool IsValid { get; set; }
         public bool IsDeleted { get; set; }
+        public System.DateTime DateUpdated { get; set; }
         public System.DateTime DateCreated { get; set; }
     
         public virtual ICollection<Class> Classes { get; set; }

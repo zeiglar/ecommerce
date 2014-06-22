@@ -4,32 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="71a99e692b944886ace7be1521e7ff57" Name="Diagram1">
-        <EntityTypeShape EntityType="DemoDBModel.C__RefactorLog" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Activity" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.ActivityType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Category" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Class" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Client" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.CreditCard" Width="1.5" PointX="10" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.CreditCardType" Width="1.5" PointX="7.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Level" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.MemberType" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Order" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.OrderHistory" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.OrderStatu" Width="1.5" PointX="12.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.OrderStatusType" Width="1.5" PointX="10.5" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.PaymentStatu" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.PriceType" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.ReferenceType" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Subcategory" Width="1.5" PointX="10" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Subject" Width="1.5" PointX="12.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.Term" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoDBModel.TitleType" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
-        <AssociationConnector Association="DemoDBModel.FK_Event_ToActivity" ManuallyRouted="false" />
-        <AssociationConnector Association="DemoDBModel.FK_Event_ToClass" ManuallyRouted="false" />
-        <AssociationConnector Association="DemoDBModel.FK_Event_ToTerm" ManuallyRouted="false" />
-        <AssociationConnector Association="DemoDBModel.FK_Order_ToActivity" ManuallyRouted="false" />
+      <Diagram DiagramId="fde789c7b8e644b49cfb692e638da5c3" Name="Diagram1">
+        <EntityTypeShape EntityType="DemoDBModel.C__RefactorLog" Width="1.5" PointX="7.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Activity" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.ActivityType" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Category" Width="1.5" PointX="12.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Class" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Client" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.CreditCard" Width="1.5" PointX="15" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.CreditCardType" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Level" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.MemberType" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Order" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.OrderHistory" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.OrderStatu" Width="1.5" PointX="12.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.OrderStatusType" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Payment" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.PaymentStatu" Width="1.5" PointX="10.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.PaymentType" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.PriceType" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.ReferenceType" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Subcategory" Width="1.5" PointX="15" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Subject" Width="1.5" PointX="17.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.Term" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDBModel.TitleType" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <AssociationConnector Association="DemoDBModel.FK_Activity_ToActivity" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoDBModel.FK_Activity_ToClass" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoDBModel.FK_Activity_ToTerm" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_Class_ToLevel" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_Client_ToMemberType" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_Client_ToReferenceType" ManuallyRouted="false" />
@@ -39,8 +40,10 @@
         <AssociationConnector Association="DemoDBModel.FK_Order_ToPriceType" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_OrderHistory_ToOrder" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_OrderStatus_ToOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoDBModel.FK_Payment_ToOrder" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_OrderStatus_ToOrderStatusType" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.FK_OrderStatus_ToPaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoDBModel.FK_Payment_ToPaymentType" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.CategorySubcategory" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.OrderActivity" ManuallyRouted="false" />
         <AssociationConnector Association="DemoDBModel.SubcategorySubject" ManuallyRouted="false" />

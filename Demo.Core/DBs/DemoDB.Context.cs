@@ -42,7 +42,9 @@ namespace Demo.Core.DBs
         public DbSet<OrderHistory> OrderHistories { get; set; }
         public DbSet<OrderStatu> OrderStatus { get; set; }
         public DbSet<OrderStatusType> OrderStatusTypes { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<PaymentStatu> PaymentStatus { get; set; }
+        public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<PriceType> PriceTypes { get; set; }
         public DbSet<ReferenceType> ReferenceTypes { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }

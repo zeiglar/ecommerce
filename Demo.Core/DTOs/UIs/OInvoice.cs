@@ -12,7 +12,6 @@ namespace Demo.Core.DTOs.UIs
     {
         //From Order
         public int Invoice { get; set; }
-        public int ActivityId { get; set; }
         public DateTime DateCreated { get; set; }
         public decimal PriceIncGST { get; set; }
         public decimal AmountPaid { get; set; }

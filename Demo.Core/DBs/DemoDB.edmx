@@ -22,7 +22,9 @@
           <EntitySet Name="OrderHistory" EntityType="DemoDBModel.Store.OrderHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatus" EntityType="DemoDBModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatusType" EntityType="DemoDBModel.Store.OrderStatusType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Payment" EntityType="DemoDBModel.Store.Payment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.Store.PaymentStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentType" EntityType="DemoDBModel.Store.PaymentType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PriceType" EntityType="DemoDBModel.Store.PriceType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReferenceType" EntityType="DemoDBModel.Store.ReferenceType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Subcategory" EntityType="DemoDBModel.Store.Subcategory" store:Type="Tables" Schema="dbo" />
@@ -30,6 +32,18 @@
           <EntitySet Name="Subject" EntityType="DemoDBModel.Store.Subject" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Term" EntityType="DemoDBModel.Store.Term" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TitleType" EntityType="DemoDBModel.Store.TitleType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Activity_ToActivity" Association="DemoDBModel.Store.FK_Activity_ToActivity">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_ToClass" Association="DemoDBModel.Store.FK_Activity_ToClass">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_ToTerm" Association="DemoDBModel.Store.FK_Activity_ToTerm">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
           <AssociationSet Name="FK_CategorySubcategory_ToCategory" Association="DemoDBModel.Store.FK_CategorySubcategory_ToCategory">
             <End Role="Category" EntitySet="Category" />
             <End Role="CategorySubcategory" EntitySet="CategorySubcategory" />
@@ -58,22 +72,6 @@
             <End Role="CreditCardType" EntitySet="CreditCardType" />
             <End Role="CreditCard" EntitySet="CreditCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Event_ToActivity" Association="DemoDBModel.Store.FK_Event_ToActivity">
-            <End Role="ActivityType" EntitySet="ActivityType" />
-            <End Role="Activity" EntitySet="Activity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_ToClass" Association="DemoDBModel.Store.FK_Event_ToClass">
-            <End Role="Class" EntitySet="Class" />
-            <End Role="Activity" EntitySet="Activity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_ToTerm" Association="DemoDBModel.Store.FK_Event_ToTerm">
-            <End Role="Term" EntitySet="Term" />
-            <End Role="Activity" EntitySet="Activity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_ToActivity" Association="DemoDBModel.Store.FK_Order_ToActivity">
-            <End Role="Activity" EntitySet="Activity" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_ToClient" Association="DemoDBModel.Store.FK_Order_ToClient">
             <End Role="Client" EntitySet="Client" />
             <End Role="Order" EntitySet="Order" />
@@ -82,7 +80,7 @@
             <End Role="PriceType" EntitySet="PriceType" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderActivity_ToEvent" Association="DemoDBModel.Store.FK_OrderActivity_ToEvent">
+          <AssociationSet Name="FK_OrderActivity_ToActivity" Association="DemoDBModel.Store.FK_OrderActivity_ToActivity">
             <End Role="Activity" EntitySet="Activity" />
             <End Role="OrderActivity" EntitySet="OrderActivity" />
           </AssociationSet>
@@ -105,6 +103,14 @@
           <AssociationSet Name="FK_OrderStatus_ToPaymentStatus" Association="DemoDBModel.Store.FK_OrderStatus_ToPaymentStatus">
             <End Role="PaymentStatus" EntitySet="PaymentStatus" />
             <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ToOrder" Association="DemoDBModel.Store.FK_Payment_ToOrder">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ToPaymentType" Association="DemoDBModel.Store.FK_Payment_ToPaymentType">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_SubcategorySubject_ToSubcategory" Association="DemoDBModel.Store.FK_SubcategorySubject_ToSubcategory">
             <End Role="Subcategory" EntitySet="Subcategory" />
@@ -142,6 +148,7 @@
           <Property Name="IsHidden" Type="bit" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ActivityType">
@@ -161,6 +168,7 @@
           <Property Name="Code" Type="int" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CategorySubcategory">
@@ -184,6 +192,7 @@
           <Property Name="Duration" Type="nvarchar" MaxLength="200" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
@@ -220,8 +229,8 @@
           <Property Name="SecurityCode" Type="smallint" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditCardType">
           <Key>
@@ -243,6 +252,7 @@
           <Property Name="IsHidden" Type="bit" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberType">
@@ -259,7 +269,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="ActivityId" Type="int" Nullable="false" />
           <Property Name="PriceTypeId" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="GST" Type="decimal" Precision="10" Scale="2" />
@@ -268,8 +277,8 @@
           <Property Name="Balance" Type="decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Memo" Type="nvarchar" MaxLength="2000" />
           <Property Name="IsSuccess" Type="bit" Nullable="false" />
-          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderActivity">
           <Key>
@@ -287,6 +296,7 @@
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -297,8 +307,8 @@
           <Property Name="PaymentStatusId" Type="int" Nullable="false" />
           <Property Name="OrderStatusTypeId" Type="int" Nullable="false" />
           <Property Name="IsSuccess" Type="bit" Nullable="false" />
-          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatusType">
           <Key>
@@ -308,7 +318,27 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Code" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="decimal" Nullable="false" />
+          <Property Name="AuthoredBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -341,6 +371,7 @@
           <Property Name="Code" Type="int" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SubcategorySubject">
@@ -360,6 +391,7 @@
           <Property Name="Code" Type="int" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Term">
@@ -375,6 +407,7 @@
           <Property Name="IsHidden" Type="bit" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TitleType">
@@ -385,6 +418,42 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Code" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Activity_ToActivity">
+          <End Role="ActivityType" Type="DemoDBModel.Store.ActivityType" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_ToClass">
+          <End Role="Class" Type="DemoDBModel.Store.Class" Multiplicity="0..1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_ToTerm">
+          <End Role="Term" Type="DemoDBModel.Store.Term" Multiplicity="1" />
+          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CategorySubcategory_ToCategory">
           <End Role="Category" Type="DemoDBModel.Store.Category" Multiplicity="1" />
           <End Role="CategorySubcategory" Type="DemoDBModel.Store.CategorySubcategory" Multiplicity="*" />
@@ -469,54 +538,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Event_ToActivity">
-          <End Role="ActivityType" Type="DemoDBModel.Store.ActivityType" Multiplicity="1" />
-          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ActivityType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Activity">
-              <PropertyRef Name="ActivityTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Event_ToClass">
-          <End Role="Class" Type="DemoDBModel.Store.Class" Multiplicity="0..1" />
-          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Activity">
-              <PropertyRef Name="ClassId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Event_ToTerm">
-          <End Role="Term" Type="DemoDBModel.Store.Term" Multiplicity="1" />
-          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Term">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Activity">
-              <PropertyRef Name="TermId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_ToActivity">
-          <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="1" />
-          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Activity">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ActivityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_ToClient">
           <End Role="Client" Type="DemoDBModel.Store.Client" Multiplicity="1" />
           <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="*" />
@@ -541,7 +562,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderActivity_ToEvent">
+        <Association Name="FK_OrderActivity_ToActivity">
           <End Role="Activity" Type="DemoDBModel.Store.Activity" Multiplicity="1" />
           <End Role="OrderActivity" Type="DemoDBModel.Store.OrderActivity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -613,6 +634,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Store.Order" Multiplicity="1" />
+          <End Role="Payment" Type="DemoDBModel.Store.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_ToPaymentType">
+          <End Role="PaymentType" Type="DemoDBModel.Store.PaymentType" Multiplicity="1" />
+          <End Role="Payment" Type="DemoDBModel.Store.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubcategorySubject_ToSubcategory">
           <End Role="Subcategory" Type="DemoDBModel.Store.Subcategory" Multiplicity="1" />
           <End Role="SubcategorySubject" Type="DemoDBModel.Store.SubcategorySubject" Multiplicity="*" />
@@ -658,28 +703,26 @@
           <EntitySet Name="OrderHistories" EntityType="DemoDBModel.OrderHistory" />
           <EntitySet Name="OrderStatus" EntityType="DemoDBModel.OrderStatu" />
           <EntitySet Name="OrderStatusTypes" EntityType="DemoDBModel.OrderStatusType" />
+          <EntitySet Name="Payments" EntityType="DemoDBModel.Payment" />
           <EntitySet Name="PaymentStatus" EntityType="DemoDBModel.PaymentStatu" />
+          <EntitySet Name="PaymentTypes" EntityType="DemoDBModel.PaymentType" />
           <EntitySet Name="PriceTypes" EntityType="DemoDBModel.PriceType" />
           <EntitySet Name="ReferenceTypes" EntityType="DemoDBModel.ReferenceType" />
           <EntitySet Name="Subcategories" EntityType="DemoDBModel.Subcategory" />
           <EntitySet Name="Subjects" EntityType="DemoDBModel.Subject" />
           <EntitySet Name="Terms" EntityType="DemoDBModel.Term" />
           <EntitySet Name="TitleTypes" EntityType="DemoDBModel.TitleType" />
-          <AssociationSet Name="FK_Event_ToActivity" Association="DemoDBModel.FK_Event_ToActivity">
+          <AssociationSet Name="FK_Activity_ToActivity" Association="DemoDBModel.FK_Activity_ToActivity">
             <End Role="ActivityType" EntitySet="ActivityTypes" />
             <End Role="Activity" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Event_ToClass" Association="DemoDBModel.FK_Event_ToClass">
+          <AssociationSet Name="FK_Activity_ToClass" Association="DemoDBModel.FK_Activity_ToClass">
             <End Role="Class" EntitySet="Classes" />
             <End Role="Activity" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Event_ToTerm" Association="DemoDBModel.FK_Event_ToTerm">
+          <AssociationSet Name="FK_Activity_ToTerm" Association="DemoDBModel.FK_Activity_ToTerm">
             <End Role="Term" EntitySet="Terms" />
             <End Role="Activity" EntitySet="Activities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_ToActivity" Association="DemoDBModel.FK_Order_ToActivity">
-            <End Role="Activity" EntitySet="Activities" />
-            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Class_ToLevel" Association="DemoDBModel.FK_Class_ToLevel">
             <End Role="Level" EntitySet="Levels" />
@@ -717,6 +760,10 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderStatus" EntitySet="OrderStatus" />
           </AssociationSet>
+          <AssociationSet Name="FK_Payment_ToOrder" Association="DemoDBModel.FK_Payment_ToOrder">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderStatus_ToOrderStatusType" Association="DemoDBModel.FK_OrderStatus_ToOrderStatusType">
             <End Role="OrderStatusType" EntitySet="OrderStatusTypes" />
             <End Role="OrderStatus" EntitySet="OrderStatus" />
@@ -724,6 +771,10 @@
           <AssociationSet Name="FK_OrderStatus_ToPaymentStatus" Association="DemoDBModel.FK_OrderStatus_ToPaymentStatus">
             <End Role="PaymentStatus" EntitySet="PaymentStatus" />
             <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ToPaymentType" Association="DemoDBModel.FK_Payment_ToPaymentType">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
           <AssociationSet Name="CategorySubcategory" Association="DemoDBModel.CategorySubcategory">
             <End Role="Category" EntitySet="Categories" />
@@ -766,12 +817,12 @@
           <Property Name="IsHidden" Type="Boolean" Nullable="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ActivityType" Relationship="DemoDBModel.FK_Event_ToActivity" FromRole="Activity" ToRole="ActivityType" />
-          <NavigationProperty Name="Class" Relationship="DemoDBModel.FK_Event_ToClass" FromRole="Activity" ToRole="Class" />
-          <NavigationProperty Name="Term" Relationship="DemoDBModel.FK_Event_ToTerm" FromRole="Activity" ToRole="Term" />
-          <NavigationProperty Name="Orders" Relationship="DemoDBModel.FK_Order_ToActivity" FromRole="Activity" ToRole="Order" />
-          <NavigationProperty Name="Orders1" Relationship="DemoDBModel.OrderActivity" FromRole="Activity" ToRole="Order" />
+          <NavigationProperty Name="ActivityType" Relationship="DemoDBModel.FK_Activity_ToActivity" FromRole="Activity" ToRole="ActivityType" />
+          <NavigationProperty Name="Class" Relationship="DemoDBModel.FK_Activity_ToClass" FromRole="Activity" ToRole="Class" />
+          <NavigationProperty Name="Term" Relationship="DemoDBModel.FK_Activity_ToTerm" FromRole="Activity" ToRole="Term" />
+          <NavigationProperty Name="Orders" Relationship="DemoDBModel.OrderActivity" FromRole="Activity" ToRole="Order" />
         </EntityType>
         <EntityType Name="ActivityType">
           <Key>
@@ -780,7 +831,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToActivity" FromRole="ActivityType" ToRole="Activity" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Activity_ToActivity" FromRole="ActivityType" ToRole="Activity" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -791,6 +842,7 @@
           <Property Name="Code" Type="Int32" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Subcategories" Relationship="DemoDBModel.CategorySubcategory" FromRole="Category" ToRole="Subcategory" />
         </EntityType>
@@ -807,8 +859,9 @@
           <Property Name="Duration" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToClass" FromRole="Class" ToRole="Activity" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Activity_ToClass" FromRole="Class" ToRole="Activity" />
           <NavigationProperty Name="Level" Relationship="DemoDBModel.FK_Class_ToLevel" FromRole="Class" ToRole="Level" />
         </EntityType>
         <EntityType Name="Client">
@@ -849,8 +902,8 @@
           <Property Name="SecurityCode" Type="Int16" Nullable="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CreditCardType" Relationship="DemoDBModel.FK_CreditCard_ToCreditCardType" FromRole="CreditCard" ToRole="CreditCardType" />
         </EntityType>
         <EntityType Name="CreditCardType">
@@ -874,6 +927,7 @@
           <Property Name="IsHidden" Type="Boolean" Nullable="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Classes" Relationship="DemoDBModel.FK_Class_ToLevel" FromRole="Level" ToRole="Class" />
         </EntityType>
@@ -892,7 +946,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="ActivityId" Type="Int32" Nullable="false" />
           <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="GST" Type="Decimal" Precision="10" Scale="2" />
@@ -901,13 +954,13 @@
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Memo" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
           <Property Name="IsSuccess" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Activity" Relationship="DemoDBModel.FK_Order_ToActivity" FromRole="Order" ToRole="Activity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Client" Relationship="DemoDBModel.FK_Order_ToClient" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="PriceType" Relationship="DemoDBModel.FK_Order_ToPriceType" FromRole="Order" ToRole="PriceType" />
           <NavigationProperty Name="OrderHistories" Relationship="DemoDBModel.FK_OrderHistory_ToOrder" FromRole="Order" ToRole="OrderHistory" />
           <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="Payments" Relationship="DemoDBModel.FK_Payment_ToOrder" FromRole="Order" ToRole="Payment" />
           <NavigationProperty Name="Activities" Relationship="DemoDBModel.OrderActivity" FromRole="Order" ToRole="Activity" />
         </EntityType>
         <EntityType Name="OrderHistory">
@@ -918,6 +971,7 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_OrderHistory_ToOrder" FromRole="OrderHistory" ToRole="Order" />
         </EntityType>
         <EntityType Name="OrderStatu">
@@ -929,8 +983,8 @@
           <Property Name="PaymentStatusId" Type="Int32" Nullable="false" />
           <Property Name="OrderStatusTypeId" Type="Int32" Nullable="false" />
           <Property Name="IsSuccess" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_OrderStatus_ToOrder" FromRole="OrderStatus" ToRole="Order" />
           <NavigationProperty Name="OrderStatusType" Relationship="DemoDBModel.FK_OrderStatus_ToOrderStatusType" FromRole="OrderStatus" ToRole="OrderStatusType" />
           <NavigationProperty Name="PaymentStatu" Relationship="DemoDBModel.FK_OrderStatus_ToPaymentStatus" FromRole="OrderStatus" ToRole="PaymentStatus" />
@@ -944,6 +998,20 @@
           <Property Name="Code" Type="Int32" Nullable="false" />
           <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToOrderStatusType" FromRole="OrderStatusType" ToRole="OrderStatus" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="AuthoredBy" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="DemoDBModel.FK_Payment_ToOrder" FromRole="Payment" ToRole="Order" />
+          <NavigationProperty Name="PaymentType" Relationship="DemoDBModel.FK_Payment_ToPaymentType" FromRole="Payment" ToRole="PaymentType" />
+        </EntityType>
         <EntityType Name="PaymentStatu">
           <Key>
             <PropertyRef Name="Id" />
@@ -952,6 +1020,15 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
           <NavigationProperty Name="OrderStatus" Relationship="DemoDBModel.FK_OrderStatus_ToPaymentStatus" FromRole="PaymentStatus" ToRole="OrderStatus" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="DemoDBModel.FK_Payment_ToPaymentType" FromRole="PaymentType" ToRole="Payment" />
         </EntityType>
         <EntityType Name="PriceType">
           <Key>
@@ -980,6 +1057,7 @@
           <Property Name="Code" Type="Int32" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Categories" Relationship="DemoDBModel.CategorySubcategory" FromRole="Subcategory" ToRole="Category" />
           <NavigationProperty Name="Subjects" Relationship="DemoDBModel.SubcategorySubject" FromRole="Subcategory" ToRole="Subject" />
@@ -993,6 +1071,7 @@
           <Property Name="Code" Type="Int32" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Subcategories" Relationship="DemoDBModel.SubcategorySubject" FromRole="Subject" ToRole="Subcategory" />
         </EntityType>
@@ -1009,8 +1088,9 @@
           <Property Name="IsHidden" Type="Boolean" Nullable="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Event_ToTerm" FromRole="Term" ToRole="Activity" />
+          <NavigationProperty Name="Activities" Relationship="DemoDBModel.FK_Activity_ToTerm" FromRole="Term" ToRole="Activity" />
         </EntityType>
         <EntityType Name="TitleType">
           <Key>
@@ -1021,7 +1101,7 @@
           <Property Name="Code" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clients" Relationship="DemoDBModel.FK_Client_ToTitleType" FromRole="TitleType" ToRole="Client" />
         </EntityType>
-        <Association Name="FK_Event_ToActivity">
+        <Association Name="FK_Activity_ToActivity">
           <End Role="ActivityType" Type="DemoDBModel.ActivityType" Multiplicity="1" />
           <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1033,7 +1113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Event_ToClass">
+        <Association Name="FK_Activity_ToClass">
           <End Role="Class" Type="DemoDBModel.Class" Multiplicity="0..1" />
           <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1045,7 +1125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Event_ToTerm">
+        <Association Name="FK_Activity_ToTerm">
           <End Role="Term" Type="DemoDBModel.Term" Multiplicity="1" />
           <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1054,18 +1134,6 @@
             </Principal>
             <Dependent Role="Activity">
               <PropertyRef Name="TermId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_ToActivity">
-          <End Role="Activity" Type="DemoDBModel.Activity" Multiplicity="1" />
-          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Activity">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ActivityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1177,6 +1245,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_ToOrder">
+          <End Role="Order" Type="DemoDBModel.Order" Multiplicity="1" />
+          <End Role="Payment" Type="DemoDBModel.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderStatus_ToOrderStatusType">
           <End Role="OrderStatusType" Type="DemoDBModel.OrderStatusType" Multiplicity="1" />
           <End Role="OrderStatus" Type="DemoDBModel.OrderStatu" Multiplicity="*" />
@@ -1198,6 +1278,18 @@
             </Principal>
             <Dependent Role="OrderStatus">
               <PropertyRef Name="PaymentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_ToPaymentType">
+          <End Role="PaymentType" Type="DemoDBModel.PaymentType" Multiplicity="1" />
+          <End Role="Payment" Type="DemoDBModel.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1251,6 +1343,7 @@
                 <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1272,6 +1365,7 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1288,6 +1382,7 @@
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1326,8 +1421,8 @@
                 <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1351,6 +1446,7 @@
                 <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1369,7 +1465,6 @@
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
                 <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="GST" ColumnName="GST" />
@@ -1378,8 +1473,8 @@
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1390,6 +1485,7 @@
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1401,8 +1497,8 @@
                 <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
                 <ScalarProperty Name="OrderStatusTypeId" ColumnName="OrderStatusTypeId" />
                 <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1415,9 +1511,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="DemoDBModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="AuthoredBy" ColumnName="AuthoredBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PaymentStatus">
             <EntityTypeMapping TypeName="DemoDBModel.PaymentStatu">
               <MappingFragment StoreEntitySet="PaymentStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="DemoDBModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
@@ -1450,6 +1568,7 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1462,6 +1581,7 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1478,6 +1598,7 @@
                 <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>

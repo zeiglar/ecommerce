@@ -23,7 +23,6 @@ namespace Demo.Core.DTOs.UIs
             if (invoice != null)
             {
                 Invoice = invoice.Invoice;
-                ActivityId = invoice.ActivityId;
                 DateCreated = invoice.DateCreated;
                 PriceIncGST = invoice.PriceIncGST;
                 AmountPaid = invoice.AmountPaid;

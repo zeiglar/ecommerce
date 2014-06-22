@@ -18,6 +18,7 @@ namespace Demo.Core.DBs
         public int OrderId { get; set; }
         public string Content { get; set; }
         public System.DateTime DateUpdated { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
         public virtual Order Order { get; set; }
     }

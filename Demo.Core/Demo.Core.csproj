@@ -109,7 +109,13 @@
     <Compile Include="DBs\OrderStatusType.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBs\Payment.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBs\PaymentStatu.cs">
+      <DependentUpon>DemoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBs\PaymentType.cs">
       <DependentUpon>DemoDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DBs\PriceType.cs">

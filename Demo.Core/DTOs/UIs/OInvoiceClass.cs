@@ -19,7 +19,6 @@ namespace Demo.Core.DTOs.UIs
             if (invoice != null)
             {
                 Invoice = invoice.Invoice;
-                ActivityId = invoice.ActivityId;
                 DateCreated = invoice.DateCreated;
                 PriceIncGST = invoice.PriceIncGST;
                 AmountPaid = invoice.AmountPaid;
@@ -47,7 +46,6 @@ namespace Demo.Core.DTOs.UIs
             if (invoiceMember != null)
             {
                 Invoice = invoiceMember.Invoice;
-                ActivityId = invoiceMember.ActivityId;
                 DateCreated = invoiceMember.DateCreated;
                 PriceIncGST = invoiceMember.PriceIncGST;
                 AmountPaid = invoiceMember.AmountPaid;

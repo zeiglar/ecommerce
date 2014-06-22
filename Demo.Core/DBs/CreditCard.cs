@@ -22,8 +22,8 @@ namespace Demo.Core.DBs
         public short SecurityCode { get; set; }
         public bool IsValid { get; set; }
         public bool IsDeleted { get; set; }
-        public System.DateTime DateCreated { get; set; }
         public System.DateTime DateUpdated { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
         public virtual CreditCardType CreditCardType { get; set; }
     }

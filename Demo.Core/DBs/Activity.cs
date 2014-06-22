@@ -17,7 +17,6 @@ namespace Demo.Core.DBs
         public Activity()
         {
             this.Orders = new HashSet<Order>();
-            this.Orders1 = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -37,12 +36,12 @@ namespace Demo.Core.DBs
         public bool IsHidden { get; set; }
         public bool IsValid { get; set; }
         public bool IsDeleted { get; set; }
+        public System.DateTime DateUpdated { get; set; }
         public System.DateTime DateCreated { get; set; }
     
         public virtual ActivityType ActivityType { get; set; }
         public virtual Class Class { get; set; }
         public virtual Term Term { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Order> Orders1 { get; set; }
     }
 }

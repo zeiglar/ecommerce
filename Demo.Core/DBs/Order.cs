@@ -18,12 +18,12 @@ namespace Demo.Core.DBs
         {
             this.OrderHistories = new HashSet<OrderHistory>();
             this.OrderStatus = new HashSet<OrderStatu>();
+            this.Payments = new HashSet<Payment>();
             this.Activities = new HashSet<Activity>();
         }
     
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public int ActivityId { get; set; }
         public int PriceTypeId { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<decimal> GST { get; set; }
@@ -32,14 +32,14 @@ namespace Demo.Core.DBs
         public decimal Balance { get; set; }
         public string Memo { get; set; }
         public bool IsSuccess { get; set; }
-        public System.DateTime DateCreated { get; set; }
         public System.DateTime DateUpdated { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
-        public virtual Activity Activity { get; set; }
         public virtual Client Client { get; set; }
         public virtual PriceType PriceType { get; set; }
         public virtual ICollection<OrderHistory> OrderHistories { get; set; }
         public virtual ICollection<OrderStatu> OrderStatus { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
     }
 }

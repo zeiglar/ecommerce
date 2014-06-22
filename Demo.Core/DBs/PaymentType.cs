@@ -12,23 +12,17 @@ namespace Demo.Core.DBs
     using System;
     using System.Collections.Generic;
     
-    public partial class Subcategory
+    public partial class PaymentType
     {
-        public Subcategory()
+        public PaymentType()
         {
-            this.Categories = new HashSet<Category>();
-            this.Subjects = new HashSet<Subject>();
+            this.Payments = new HashSet<Payment>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Code { get; set; }
-        public bool IsValid { get; set; }
-        public bool IsDeleted { get; set; }
-        public System.DateTime DateUpdated { get; set; }
-        public System.DateTime DateCreated { get; set; }
+        public int Code { get; set; }
     
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

@@ -19,8 +19,8 @@ namespace Demo.Core.DBs
         public int PaymentStatusId { get; set; }
         public int OrderStatusTypeId { get; set; }
         public bool IsSuccess { get; set; }
-        public System.DateTime DateCreated { get; set; }
         public System.DateTime DateUpdated { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual OrderStatusType OrderStatusType { get; set; }
