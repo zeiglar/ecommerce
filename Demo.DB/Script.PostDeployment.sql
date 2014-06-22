@@ -59,6 +59,14 @@ VALUES
 ('Failed',3),
 ('Success',4)
 
+INSERT INTO [PaymentType]
+VALUES
+('Cash',1),
+('Credit',2),
+('EFPOS',3),
+('Cheque',4),
+('Other', 5)
+
 --- TODO: Update later
 INSERT INTO [PaymentStatus]
 VALUES
@@ -132,15 +140,37 @@ INSERT INTO [Client]
 ([TitleTypeId],[FirstName],[LastName],[Address],[Suburb],[Postcode],[Mobile],[Email])
 VALUES
 (1, 'FTest', 'LTest', 'Test Adddress', 'TestS', '2000', '0123456789', 'test@test.com'),
-(2, 'FTest2', 'LTest2', 'Test2 Adddress', 'Test2S', '2000', '1234567890', 'test2@test2.com')
+(2, 'FTest2', 'LTest2', 'Test2 Adddress', 'Test2S', '2000', '1234567890', 'test2@test2.com'),
+(2, 'FCom', 'LCom', 'Test3 Adddress', 'Test3S', '2000', '1234567890', 'test3@test3.com')
 
 INSERT INTO [Order]
-([ClientId], [ActivityId], [PriceTypeId], [PriceIncGST], [AmountPaid],[Balance], [Memo], [IsSuccess])
+([ClientId], [PriceTypeId], [PriceIncGST], [AmountPaid],[Balance], [Memo], [IsSuccess])
 VALUES
-(1, 1, 1, 20, 20, 0, 'It is a test for Mr Ftest to book a member', 1),
-(1, 2, 1, 240, 240, 0, 'It is a test for Mr Ftest to book a class', 1),
-(2, 1, 2, 15, 15, 0, 'It is a test2 for Mr Ftest to book a member in a concession price', 1),
-(2, 3, 1, 240, 240, 0, 'It is a test2 for Mr Ftest to book a class', 1)
+(1, 1, 20, 20, 0, 'It is a test for Mr Ftest to book a member', 1),
+(1, 1, 240, 20, -220, 'It is a test for Mr Ftest to book a class', 1),
+(2, 2, 15, 15, 0, 'It is a test2 for Mr Ftest to book a member in a concession price', 1),
+(2, 1, 240, 260, 20, 'It is a test2 for Mr Ftest to book a class', 1),
+(3, 1, 260, 260, 0, 'It is a test for Mr Ftest to book a member', 1)
+
+INSERT INTO [Payment]
+([PaymentTypeId], [OrderId], [Paid], [AuthoredBy], [DateCreated])
+VALUES
+(1, 1, 20, 'test', '2014-05-05 23:41:15.800'),
+(2, 2, 20, 'test', '2014-05-05 23:41:15.800'),
+(2, 3, 15, 'test', '2014-05-05 23:41:15.800'),
+(2, 4, 260, 'test', '2014-05-05 23:41:15.800'),
+(2, 5, 200, 'test', '2014-05-05 23:41:15.800'),
+(1, 5, 60, 'test', '2014-05-05 23:41:15.800')
+
+INSERT INTO [OrderActivity]
+VALUES
+(1, 1),
+(2, 2),
+(3, 1),
+(4, 3),
+(5, 1),
+(5, 2)
+
 
 INSERT INTO [OrderHistory]
 ([OrderId], [Content])
@@ -153,11 +183,3 @@ VALUES
 (3, 'Payment has been made'),
 (4, 'Client Fill the info form'),
 (4, 'Payment has been made')
-
-INSERT INTO [OrderActivity]
-([OrderId],[ActivityId])
-VALUES
-(1,1),
-(1,2),
-(2,1),
-(2,3)

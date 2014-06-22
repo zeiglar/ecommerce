@@ -86,13 +86,13 @@
     <Build Include="Tables\Term.sql" />
     <Build Include="RetrieveAllSubjects.sql" />
     <Build Include="Tables\OrderHistory.sql" />
+    <Build Include="Tables\Types\PaymentType.sql" />
+    <Build Include="Tables\Payment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Demo.DB.sqlproj.user" />
     <None Include="Demo.DB.publish.xml" />
-    <None Include="Demo_1.DB.publish.xml" />
     <None Include="Demo_Remote.DB.publish.xml" />
-    <None Include="Demo_2.DB.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

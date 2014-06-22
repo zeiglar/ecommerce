@@ -17,8 +17,9 @@
 	[Email] NVARCHAR(200) NOT NULL,
     [IsValid] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
-    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 
     CONSTRAINT [FK_Client_ToReferenceType] FOREIGN KEY ([ReferenceTypeId]) REFERENCES [ReferenceType]([Id]),
     CONSTRAINT [FK_Client_ToMemberType] FOREIGN KEY ([MemberTypeId]) REFERENCES [MemberType]([Id]),

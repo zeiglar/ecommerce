@@ -8,6 +8,8 @@
     [DateClose] DATETIME NULL, 
     [IsHidden] BIT NOT NULL DEFAULT 0, 
     [IsValid] BIT NOT NULL DEFAULT 1, 
-    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0,
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
     [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 )

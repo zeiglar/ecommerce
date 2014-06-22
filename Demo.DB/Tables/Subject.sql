@@ -5,5 +5,7 @@
     [Code] INT NULL, 
     [IsValid] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
     [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 )

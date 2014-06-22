@@ -7,8 +7,9 @@
     [OrderStatusTypeId] INT NOT NULL DEFAULT 1, 
 
 	[IsSuccess] BIT NOT NULL DEFAULT 0,
-	[DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
-	[DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 
     CONSTRAINT [FK_OrderStatus_ToOrder] FOREIGN KEY ([OrderId]) REFERENCES [Order]([Id]),
     CONSTRAINT [FK_OrderStatus_ToPaymentStatus] FOREIGN KEY ([PaymentStatusId]) REFERENCES [PaymentStatus]([Id]),

@@ -8,8 +8,9 @@
     [SecurityCode] SMALLINT NOT NULL,
     [IsValid] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
-    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(), 
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 
     CONSTRAINT [FK_CreditCard_ToCreditCardType] FOREIGN KEY ([CreditCardTypeId]) REFERENCES [CreditCardType]([Id])
 )

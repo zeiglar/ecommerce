@@ -14,7 +14,9 @@
     [Duration] NVARCHAR(200) NULL,
     [IsValid] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
+
+    [DateUpdated] DATETIME NOT NULL DEFAULT SYSDATETIME(),
+    [DateCreated] DATETIME NOT NULL DEFAULT SYSDATETIME()
 	
     CONSTRAINT [FK_Class_ToLevel] FOREIGN KEY ([LevelId]) REFERENCES [Level]([Id])
     --CONSTRAINT [FK_Class_ToCategory] FOREIGN KEY ([CategoryId]) REFERENCES [Category]([Id]),
