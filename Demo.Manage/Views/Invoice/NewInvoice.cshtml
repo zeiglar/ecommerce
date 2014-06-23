@@ -1,0 +1,36 @@
+﻿@model Demo.Core.DTOs.UIs.OPayment
+
+<h3>New Invoice</h3>
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <hr />
+    
+    <div class="row">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.PaymentType)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.PaymentType, (IEnumerable<SelectListItem>)ViewBag.PaymentType, "Choice Payment Type")
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 0.2em;">
+        <div class="col-md-4">
+            <strong>@Html.LabelFor(m => m.Paid)</strong>
+        </div>
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.Paid)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            @Ajax.ActionLink("Back to List", "ShowInvoice", new {id = Model.OrderId}, new AjaxOptions { UpdateTargetId = "Main" }) | 
+            <input id="button_save" type="submit" class="btn btn-default" value="Confirm" />
+        </div>
+    </div>
+    
+}

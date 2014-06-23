@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Demo.Core.Enums
 {
-    public enum Epayment
+    public enum EPayment
     {
         Cash = 1,
         Credit = 2,

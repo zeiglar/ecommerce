@@ -164,9 +164,10 @@
     <Compile Include="DTOs\OUIMember.cs" />
     <Compile Include="DTOs\OPayment.cs" />
     <Compile Include="DTOs\UIs\OMemo.cs" />
+    <Compile Include="DTOs\UIs\OPayment.cs" />
     <Compile Include="Enums\EActivity.cs" />
     <Compile Include="Enums\ECard.cs" />
-    <Compile Include="Enums\Epayment.cs" />
+    <Compile Include="Enums\EPayment.cs" />
     <Compile Include="Enums\EPrice.cs" />
     <Compile Include="Enums\ETitle.cs" />
     <Compile Include="Helpers\DataProcessing.cs" />

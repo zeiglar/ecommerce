@@ -306,7 +306,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Invoice\Invoices.cshtml" />
-    <Content Include="Views\Invoice\NewInvoices.cshtml" />
+    <Content Include="Views\Invoice\NewInvoice.cshtml" />
     <Content Include="Views\Manage\Classes.cshtml" />
     <Content Include="Views\Manage\EditClass.cshtml" />
     <Content Include="Views\Manage\EditLevel.cshtml" />

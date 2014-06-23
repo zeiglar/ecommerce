@@ -100,7 +100,7 @@ namespace Demo.Manage.Controllers
 
             invoice.Invoices = this._DemoDB.Payments
                                             .Where(s => s.OrderId == invoice.Invoice)
-                                            .Select(s => new Invoice { PaymentId = s.Id, Paid = s.Paid, PaymentType = (Epayment)s.PaymentType.Code, AuthoredBy = s.AuthoredBy })
+                                            .Select(s => new Invoice { PaymentId = s.Id, Paid = s.Paid, PaymentType = (EPayment)s.PaymentType.Code, AuthoredBy = s.AuthoredBy })
                                             .ToList();
             invoice.Shoppings =
                                 (from orders in this._DemoDB.Orders
@@ -132,6 +132,13 @@ namespace Demo.Manage.Controllers
             //}
 
             return PartialView(invoice);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ShowInvoice(OInvoice oInvoice)
+        {
+            return null;
         }
 
         public ActionResult ShowInvoiceClass()
@@ -265,11 +272,54 @@ namespace Demo.Manage.Controllers
         #endregion
 
         #region New Invoice
-        public ActionResult NewInvoices()
+        public ActionResult NewInvoice(int orderId)
         {
-            return PartialView();
+            Demo.Core.DTOs.UIs.OPayment oPayment = new Core.DTOs.UIs.OPayment();
+            oPayment.OrderId = orderId;
+
+            PaymentTypeDropDownList();
+
+            return PartialView(oPayment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewInvoice(Demo.Core.DTOs.UIs.OPayment oPayment)
+        {
+            if (!ModelState.IsValid)
+            {
+                PartialView(oPayment);
+            }
+
+            this._DemoDB.Payments.Add(new Payment()
+            {
+                PaymentTypeId = oPayment.PaymentType,
+                OrderId = oPayment.OrderId,
+                Paid = oPayment.Paid,
+                DateUpdated = this._Now,
+                DateCreated = this._Now
+            });
+
+            this._DemoDB.SaveChanges();
+
+            var order = this._DemoDB.Orders.FirstOrDefault(s => s.Id == oPayment.OrderId);
+            order.AmountPaid += oPayment.Paid;
+            order.DateUpdated = this._Now;
+
+            this._DemoDB.SaveChanges();
+
+            return RedirectToAction("Invoice", new { id = oPayment.OrderId });
         }
         #endregion
+
+        private void PaymentTypeDropDownList()
+        {
+            var types = from EPayment p in Enum.GetValues(typeof(EPayment))
+                       select new { Id = p, Type = p.ToString() };
+
+            ViewBag.PaymentType = new SelectList(types, "Id", "Type", null); ;
+        }
+
         #endregion
     }
 }

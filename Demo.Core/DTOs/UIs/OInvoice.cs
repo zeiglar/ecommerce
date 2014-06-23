@@ -55,7 +55,7 @@ namespace Demo.Core.DTOs.UIs
     public class Invoice
     {
         public int PaymentId { get; set; }
-        public Epayment PaymentType { get; set; }
+        public EPayment PaymentType { get; set; }
         public string AuthoredBy { get; set; }
         public decimal Paid { get; set; }
     }
