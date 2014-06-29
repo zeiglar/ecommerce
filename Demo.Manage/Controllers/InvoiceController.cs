@@ -291,6 +291,7 @@ namespace Demo.Manage.Controllers
                 PartialView(oPayment);
             }
 
+            //Add new payment
             this._DemoDB.Payments.Add(new Payment()
             {
                 PaymentTypeId = oPayment.PaymentType,
@@ -302,20 +303,33 @@ namespace Demo.Manage.Controllers
 
             this._DemoDB.SaveChanges();
 
-            var order = this._DemoDB.Orders.FirstOrDefault(s => s.Id == oPayment.OrderId);
+            //Update total payment
+            Order order = this._DemoDB.Orders.FirstOrDefault(s => s.Id == oPayment.OrderId);
             order.AmountPaid += oPayment.Paid;
+            order.Balance = order.AmountPaid - order.PriceIncGST;
             order.DateUpdated = this._Now;
 
             this._DemoDB.SaveChanges();
 
-            return RedirectToAction("Invoice", new { id = oPayment.OrderId });
+            //Add new payment history
+            this._DemoDB.OrderHistories.Add(new OrderHistory()
+            {
+                OrderId = oPayment.OrderId,
+                Content = string.Format("{0} has been paid by {1}", oPayment.Paid, (EPayment)oPayment.PaymentType),
+                DateUpdated = this._Now,
+                DateCreated = this._Now
+            });
+
+            this._DemoDB.SaveChanges();
+
+            return RedirectToAction("ShowInvoice", new { id = oPayment.OrderId });
         }
         #endregion
 
         private void PaymentTypeDropDownList()
         {
             var types = from EPayment p in Enum.GetValues(typeof(EPayment))
-                       select new { Id = p, Type = p.ToString() };
+                       select new { Id = (int)p, Type = p.ToString() };
 
             ViewBag.PaymentType = new SelectList(types, "Id", "Type", null); ;
         }
