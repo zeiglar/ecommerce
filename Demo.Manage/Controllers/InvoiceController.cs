@@ -326,10 +326,105 @@ namespace Demo.Manage.Controllers
         }
         #endregion
 
+        #region Edit Client
+        public ActionResult EditClient(int orderId)
+        {
+            var invoice = this._DemoDB.Orders.FirstOrDefault(s => s.Id == orderId);
+            Client client = this._DemoDB.Clients.FirstOrDefault(s => s.Id == invoice.ClientId);
+            if (client == null)
+                return HttpNotFound();
+
+            OClient oClient = new OClient()
+            {
+                Title = (ETitle)client.TitleType.Code,
+                FirstName = client.FirstName,
+                LastName = client.LastName,
+                Address = client.Address,
+                Suburb = client.Suburb,
+                PostCode = client.Postcode,
+                Mobile = client.Mobile,
+                HomePhone = client.HomePhone,
+                WorkPhone = client.WorkPhone,
+                Email = client.Email
+            };
+
+            @ViewBag.Action = "Edit Client";
+            @ViewBag.OrderId = orderId;
+            @ViewBag.ClientId = invoice.ClientId;
+
+            return PartialView(oClient);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditClient(int? orderId, OClient oClient)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(oClient);
+            }
+
+            if (orderId.HasValue)
+            {
+                //update
+                var invoice = this._DemoDB.Orders.FirstOrDefault(s => s.Id == orderId);
+                Client client = this._DemoDB.Clients.FirstOrDefault(s => s.Id == invoice.ClientId);
+
+                client.TitleTypeId = (int)oClient.Title;
+                client.MemberTypeId = 1;                   //None
+                client.FirstName = oClient.FirstName;
+                client.LastName = oClient.LastName;
+                client.Address = oClient.Address;
+                client.Suburb = oClient.Suburb;
+                client.Postcode = oClient.PostCode;
+                client.Mobile = oClient.Mobile;
+                client.HomePhone = oClient.HomePhone;
+                client.WorkPhone = oClient.WorkPhone;
+                client.Email = oClient.Email;
+                client.DateUpdated = this._Now;
+            }
+            else
+            {
+                //create
+                Client client = new Client()
+                {
+                    TitleTypeId = (int)oClient.Title,
+                    MemberTypeId = 1,                   //None
+                    FirstName = oClient.FirstName,
+                    LastName = oClient.LastName,
+                    Address = oClient.Address,
+                    Suburb = oClient.Suburb,
+                    Postcode = oClient.PostCode,
+                    Mobile = oClient.Mobile,
+                    HomePhone = oClient.HomePhone,
+                    WorkPhone = oClient.WorkPhone,
+                    Email = oClient.Email,
+                    DateUpdated = this._Now,
+                    DateCreated = this._Now
+                };
+                this._DemoDB.Clients.Add(client);
+            }
+
+            try
+            {
+                this._DemoDB.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //TODO: handle ex
+            }
+
+            if (orderId.HasValue)
+                return RedirectToAction("ShowInvoice", "Invoice", new { id = orderId });
+
+            return RedirectToAction("Invoices", "Invoice");
+        }
+        #endregion
+
         private void PaymentTypeDropDownList()
         {
             var types = from EPayment p in Enum.GetValues(typeof(EPayment))
-                       select new { Id = (int)p, Type = p.ToString() };
+                        select new { Id = (int)p, Type = p.ToString() };
 
             ViewBag.PaymentType = new SelectList(types, "Id", "Type", null); ;
         }

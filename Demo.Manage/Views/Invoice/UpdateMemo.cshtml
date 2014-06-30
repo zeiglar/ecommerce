@@ -1,5 +1,5 @@
 ﻿@model Demo.Core.DTOs.UIs.OMemo
-    
+
 @using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
 {
     @Html.AntiForgeryToken()
@@ -12,8 +12,10 @@
         <div class="col-md-4">
             <strong>@Html.LabelFor(m => m.Memo)</strong>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-8">
-            @Html.EditorFor(m => m.Memo)
+            @Html.TextAreaFor(m => m.Memo, 10, 150, null)
         </div>
     </div>
 
